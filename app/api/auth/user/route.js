@@ -1,13 +1,17 @@
-import { getSession } from "next-auth/react";
+// app/api/user/route.js
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]/route";
 import axios from "axios";
 
-export default async function handler(req, res) {
+export async function GET(req) {
   // Get session from NextAuth
-  const session = await getSession({ req });
+  const session = await getServerSession(authOptions);
 
   // Check if session exists
   if (!session) {
-    return res.status(401).json({ message: "Unauthorized" });
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+    });
   }
 
   // Extract the access token from the session
@@ -31,10 +35,14 @@ export default async function handler(req, res) {
     const userData = githubResponse.data;
 
     // Send the user data as the response
-    res.status(200).json(userData);
+    return new Response(JSON.stringify(userData), {
+      status: 200,
+    });
   } catch (error) {
     // Log the error and send a response
     console.error("Error fetching user data:", error.message);
-    res.status(500).json({ message: "Error fetching user data" });
+    return new Response(JSON.stringify({ message: "Error fetching user data" }), {
+      status: 500,
+    });
   }
 }

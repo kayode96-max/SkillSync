@@ -1,3 +1,4 @@
+// app/navbar/page.jsx
 "use client";
 import React from "react";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@nextui-org/navbar";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+
 const Darkmode = dynamic(() => import("../Darkmode/page.jsx"), { ssr: false });
 import { AcmeLogo } from "./Logo.jsx";
 

@@ -1,7 +1,23 @@
+// app/integrations/page.jsx
+"use client";
+
 import React from "react";
 import Image from "next/image";
-// import { Button } from "@nextui-org/button";
+import { useSession, signIn, signOut } from "next-auth/react";
+
 export default function Page() {
+  const { data: session, status } = useSession();
+
+  const handleAuthClick = () => {
+    if (session) {
+      // User is authenticated, so sign out
+      signOut();
+    } else {
+      // User is not authenticated, so sign in
+      signIn("github");
+    }
+  };
+
   const data = [
     {
       title: "GitHub",
@@ -24,9 +40,10 @@ export default function Page() {
       value: "bg-slate-700 ",
     },
   ];
+
   return (
     <div className="h-screen p-8 w-full">
-      <div className="flex-1 dark:bg-cyan-700  rounded-lg shadow-xl mt-4 p-8 ">
+      <div className="flex-1 dark:bg-cyan-700 rounded-lg shadow-xl mt-4 p-8">
         <h4 className="text-xl dark:text-white text-gray-900 font-bold">
           Add Accounts
         </h4>
@@ -34,10 +51,9 @@ export default function Page() {
           {data.map((item, index) => (
             <button
               key={index}
-              className={`flex items-center gap-x-6 p-4 mb-2 bg-gray-800 text-white rounded`}
+              className={`flex items-center gap-x-6 p-4 mb-2 ${item.value} text-white rounded`}
             >
               <span>+</span>
-
               {item.title}
               <Image
                 src={item.imageUrl}
@@ -48,6 +64,19 @@ export default function Page() {
               />
             </button>
           ))}
+          <button
+            onClick={handleAuthClick}
+            className={`flex items-center gap-x-6 p-4 mb-2 ${data[0].value} text-white rounded`}
+          >
+            <span>{session ? "Authenticated" : "Authenticate"}</span>
+            <Image
+              src={data[0].imageUrl}
+              alt={data[0].title}
+              width={24}
+              height={24}
+              className="mr-2"
+            />
+          </button>
         </div>
       </div>
     </div>
