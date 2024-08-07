@@ -1,6 +1,6 @@
 // app/api/user/route.js
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../[...nextauth]/route.js";
 import axios from "axios";
 
 export async function GET(req) {
