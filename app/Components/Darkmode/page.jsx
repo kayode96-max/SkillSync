@@ -1,17 +1,29 @@
+"use client";
 import React from "react";
 import { Switch } from "@nextui-org/react";
 import { MoonIcon } from "./MoonIcon";
 import { SunIcon } from "./SunIcon";
 import { useTheme } from "next-themes";
 
-export default function App() {
+export default function TestDarkmode() {
   const { theme, setTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = React.useState(theme === "dark");
 
+  React.useEffect(() => {
+    setIsDarkMode(theme === "dark");
+  }, [theme]);
+
+  const handleChange = () => {
+    const newTheme = isDarkMode ? "light" : "dark";
+    setTheme(newTheme);
+    setIsDarkMode(newTheme === "dark");
+  };
+  const switchLabel = isDarkMode ? "Light Mode" : "Dark Mode";
   return (
     <Switch
-      defaultSelected={theme === "dark"}
+      checked={isDarkMode}
       size="sm"
-      color="secondary"
+      color="primary"
       thumbIcon={({ isSelected, className }) =>
         isSelected ? (
           <SunIcon className={className} />
@@ -19,9 +31,9 @@ export default function App() {
           <MoonIcon className={className} />
         )
       }
-      onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onChange={handleChange}
     >
-      Dark mode
+      {switchLabel}
     </Switch>
   );
 }

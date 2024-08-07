@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 import React from "react";
 import {
   Navbar,
@@ -9,9 +9,9 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import Darkmode from "../Darkmode/page.jsx";
 import Link from "next/link";
-
+import dynamic from "next/dynamic";
+const Darkmode = dynamic(() => import("../Darkmode/page.jsx"), { ssr: false });
 import { AcmeLogo } from "./Logo.jsx";
 
 export default function Nav() {
@@ -33,7 +33,7 @@ export default function Nav() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="flex justify-between bg-slate-200 dark:bg-cyan-700 h-14  "
+      className="flex justify-between bg-slate-200 dark:bg-cyan-700 h-14"
     >
       <NavbarContent>
         <NavbarMenuToggle
@@ -42,7 +42,7 @@ export default function Nav() {
         />
         <NavbarBrand className="ml-6">
           <AcmeLogo />
-          <p className="font-bold text-inherit ">ACME</p>
+          <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -74,9 +74,10 @@ export default function Nav() {
 
       <NavbarContent className="hidden sm:flex gap-6 mr-6" justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Darkmode className="" />
+          <Darkmode />
         </NavbarItem>
       </NavbarContent>
+
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>

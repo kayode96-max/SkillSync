@@ -1,4 +1,4 @@
-"use client";
+
 import React from "react";
 import User from "./Components/User/header.jsx";
 import Bio from "./Components/User/bio.jsx";
