@@ -3,7 +3,7 @@ import React from "react";
 export default function Header({ userData }) {
 
   if (!userData) {
-    return <div>No user data available.</div>;
+    return <div>No user data available right now.</div>;
   }
 
   return (

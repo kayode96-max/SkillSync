@@ -7,7 +7,7 @@ import Bio from "./Components/User/Bio.jsx";
 import Personal from "./Components/User/Personal.jsx";
 
 export default async function Page() {
-  const session = await auth(); // Fetch session info
+  const session = await auth();
   const username = session?.user?.username;
 
   let userData = null;
