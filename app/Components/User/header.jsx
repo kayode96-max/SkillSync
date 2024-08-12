@@ -1,23 +1,28 @@
-import React from 'react'
+import React from "react";
 
-export default function page() {
+export default function Header({ userData }) {
+
+  if (!userData) {
+    return <div>No user data available.</div>;
+  }
+
   return (
-    <div className="h-full p-8 ">
-      <div className="w-full h-[250px] ">
+    <div className="h-full p-8">
+      <div className="w-full h-[250px]">
         <img
           src="banner.png"
-          className="w-full h-full rounded-tl-lg rounded-tr-lg "
+          className="w-full h-full rounded-tl-lg rounded-tr-lg"
           alt="Profile Background"
         />
       </div>
-      <div className="flex flex-col items-center -mt-20 ">
+      <div className="flex flex-col items-center -mt-20">
         <img
-          src="profile1.jpg"
+          src={userData.avatar_url}
           className="w-40 border-4 border-white rounded-full"
           alt="Profile"
         />
         <div className="flex items-center space-x-2 mt-2">
-          <p className="dark:text-white text-2xl">Ahsan Khalid</p>
+          <p className="dark:text-white text-2xl">{userData.name}</p>
           <span className="bg-blue-500 rounded-full p-1" title="Verified">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,10 +40,10 @@ export default function page() {
             </svg>
           </span>
         </div>
-        <p className="text-gray-700 dark:text-white">
-          Junior Software Engineer at Systems Limited
+        <p className="text-gray-700 dark:text-white">{userData.bio}</p>
+        <p className="text-sm text-gray-500 dark:text-white">
+          {userData.location}
         </p>
-        <p className="text-sm text-gray-500 dark:text-white">Isamabad, Pakistan</p>
       </div>
       <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
         <div className="flex items-center space-x-4 mt-2">
@@ -62,7 +67,7 @@ export default function page() {
             >
               <path
                 fillRule="evenodd"
-                d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                d="M18 5v8a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM4 4h12a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1zm11 6.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zm-3 2.5h4v3H8v-3h4z"
                 clipRule="evenodd"
               />
             </svg>
@@ -71,5 +76,5 @@ export default function page() {
         </div>
       </div>
     </div>
-  )
+  );
 }

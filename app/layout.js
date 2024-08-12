@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="bg-slate-100 dark:bg-black">
         <Providers>
-          {/* <DynamicNav /> */}
           <Nav/>
           {children}
         </Providers>

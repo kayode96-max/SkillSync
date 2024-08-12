@@ -69,19 +69,12 @@ export default function Nav() {
         <NavbarItem className="hidden lg:flex">
           <Link href="/Login">Login</Link>
         </NavbarItem>
-        <NavbarItem>
-          <button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </button>
-        </NavbarItem>
       </NavbarContent>
-
       <NavbarContent className="hidden sm:flex gap-6 mr-6" justify="end">
         <NavbarItem className="hidden lg:flex">
           <Darkmode />
         </NavbarItem>
       </NavbarContent>
-
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>

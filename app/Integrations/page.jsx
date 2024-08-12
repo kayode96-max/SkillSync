@@ -1,12 +1,18 @@
-// app/integrations/page.jsx
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { auth } from "../auth.js";
 
 export default function Page() {
   const { data: session, status } = useSession();
+
+
+  
+  if (status === "loading") {
+    return <div>Loading...</div>; 
+  }
 
   const handleAuthClick = () => {
     if (session) {
@@ -22,7 +28,7 @@ export default function Page() {
     {
       title: "GitHub",
       imageUrl: "/github.svg",
-      value: "bg-gray-800 ",
+      value: "bg-gray-800",
     },
     {
       title: "Linkedin",
@@ -32,12 +38,12 @@ export default function Page() {
     {
       title: "Stackoverflow",
       imageUrl: "/stack.svg",
-      value: "bg-orange-600 ",
+      value: "bg-orange-600",
     },
     {
       title: "LeetCode",
       imageUrl: "/leetcode.svg",
-      value: "bg-slate-700 ",
+      value: "bg-slate-700",
     },
   ];
 
@@ -68,7 +74,7 @@ export default function Page() {
             onClick={handleAuthClick}
             className={`flex items-center gap-x-6 p-4 mb-2 ${data[0].value} text-white rounded`}
           >
-            <span>{session ? "Authenticated" : "Authenticate"}</span>
+            <span>{session ? session?.user.username : "Authenticate"}</span>
             <Image
               src={data[0].imageUrl}
               alt={data[0].title}
