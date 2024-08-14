@@ -7,8 +7,8 @@ export default function Header({ userData }) {
   }
 
   return (
-    <div className="h-full p-8">
-      <div className="w-full h-[250px]">
+    <div className="h-full  flex flex-col items-center p-8">
+      <div className="w-3/4 h-[250px]">
         <img
           src="banner.png"
           className="w-full h-full rounded-tl-lg rounded-tr-lg"

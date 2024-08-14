@@ -5,6 +5,7 @@ import Image from "next/image";
 import Header from "./Components/User/Header.jsx";
 import Bio from "./Components/User/Bio.jsx";
 import Personal from "./Components/User/Personal.jsx";
+import { redirect } from "next/navigation.js";
 
 export default async function Page() {
   const session = await auth();
@@ -19,20 +20,11 @@ export default async function Page() {
   }
 
   if (!session?.user) {
-    redirect("/login");
+    redirect("/Login");
   }
 
   return (
     <div>
-      <h1 className="text-3xl my-2">{session?.user.username}</h1>
-      <Image
-        src={session?.user.image}
-        alt="profile"
-        width={100}
-        height={100}
-        className="rounded-full"
-      />
-      <Logout />
       <Header userData={userData} />
       <Bio />
       <Personal />

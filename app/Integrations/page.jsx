@@ -3,12 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { auth } from "../auth.js";
+// import { auth } from "../auth.js";
 
 export default function Page() {
   const { data: session, status } = useSession();
-
-
   
   if (status === "loading") {
     return <div>Loading...</div>; 
@@ -17,8 +15,10 @@ export default function Page() {
   const handleAuthClick = () => {
     if (session) {
       // User is authenticated, so sign out
-      signOut();
-    } else {
+      signOut({ redirect: false }).then(() => {
+        // Force page reload
+        window.location.reload();
+    } ) } else {
       // User is not authenticated, so sign in
       signIn("github");
     }
@@ -74,6 +74,7 @@ export default function Page() {
             onClick={handleAuthClick}
             className={`flex items-center gap-x-6 p-4 mb-2 ${data[0].value} text-white rounded`}
           >
+            <span>+</span>
             <span>{session ? session?.user.username : "Authenticate"}</span>
             <Image
               src={data[0].imageUrl}

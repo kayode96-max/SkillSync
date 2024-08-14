@@ -1,11 +1,15 @@
+const { nextui } = require('@nextui-org/theme');
+const tailwindcssAnimate = require('tailwindcss-animate');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
+    "./node_modules/@nextui-org/theme/dist/components/(avatar|button|dropdown|link|navbar|toggle|ripple|spinner|menu|divider|popover).js"
   ],
   prefix: "",
   theme: {
@@ -73,5 +77,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [
+    tailwindcssAnimate, // Fix the reference to the tailwindcss-animate plugin
+    nextui(),
+  ],
+};

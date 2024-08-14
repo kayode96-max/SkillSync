@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Personal() {
   return (
-    <div class=" flex 2xl:w-full p-8 ">
-      <div class=" flex flex-col 2xl:w-full ">
+    <div class=" flex justify-center p-8 ">
+      <div class=" flex flex-col 2xl:w-3/4 ">
         <div class="flex-1 dark:bg-cyan-700 rounded-lg shadow-xl p-8">
           <h4 class="text-xl dark:text-white text-gray-900 font-bold">
             Personal Info
