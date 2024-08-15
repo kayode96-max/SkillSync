@@ -1,9 +1,12 @@
 import { Providers } from "./provider";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// import dynamic from "next/dynamic";
 import Nav from "./Components/Navbar/Nav";
 const inter = Inter({ subsets: ["latin"] });
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+
+import { ourFileRouter } from "./api/uploadthing/core";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,8 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-slate-100 dark:bg-black">
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <Providers>
-          <Nav/>
+          <Nav />
           {children}
         </Providers>
       </body>

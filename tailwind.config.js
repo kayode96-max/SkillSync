@@ -1,14 +1,16 @@
+import { withUt } from "uploadthing/tw";
 const { nextui } = require('@nextui-org/theme');
 const tailwindcssAnimate = require('tailwindcss-animate');
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default withUt({
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,jsx}",
-    "./components/**/*.{js,jsx}",
-    "./app/**/*.{js,jsx}",
-    "./src/**/*.{js,jsx}",
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{ts,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/components/(avatar|button|dropdown|link|navbar|toggle|ripple|spinner|menu|divider|popover).js"
   ],
   prefix: "",
@@ -75,10 +77,13 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        input: '0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.1)', // Added shadow for input elements
+      },
     },
   },
   plugins: [
-    tailwindcssAnimate, // Fix the reference to the tailwindcss-animate plugin
+    tailwindcssAnimate, // Plugin for animations
     nextui(),
   ],
-};
+});

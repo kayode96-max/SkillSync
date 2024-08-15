@@ -1,28 +1,27 @@
 import React from "react";
+import ClientHeader from "./ClientHeader.jsx";
+
 
 export default function Header({ userData }) {
-
-  if (!userData) {
-    return <div>No user data available right now, try again.</div>;
-  }
+  const avatarUrl = userData?.avatar_url || "https://via.placeholder.com/150";
+  const name = userData?.name || "username";
+  const bio = userData?.bio || "not fetched";
+  const location = userData?.location || "not fetched";
 
   return (
     <div className="h-full  flex flex-col items-center p-8">
-      <div className="w-3/4 h-[250px]">
-        <img
-          src="banner.png"
-          className="w-full h-full rounded-tl-lg rounded-tr-lg"
-          alt="Profile Background"
-        />
+      <div className="w-3/4 h-[300px] relative border-1 border-white rounded-md  ">
+      <ClientHeader/>
       </div>
-      <div className="flex flex-col items-center -mt-20">
+
+      <div className="flex flex-col items-center -mt-20 z-10">
         <img
-          src={userData.avatar_url}
+          src={avatarUrl}
           className="w-40 border-4 border-white rounded-full"
           alt="Profile"
         />
         <div className="flex items-center space-x-2 mt-2">
-          <p className="dark:text-white text-2xl">{userData.name}</p>
+          <p className="dark:text-white text-2xl">{name}</p>
           <span className="bg-blue-500 rounded-full p-1" title="Verified">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,10 +39,8 @@ export default function Header({ userData }) {
             </svg>
           </span>
         </div>
-        <p className="text-gray-700 dark:text-white">{userData.bio}</p>
-        <p className="text-sm text-gray-500 dark:text-white">
-          {userData.location}
-        </p>
+        <p className="text-gray-700 dark:text-white">{bio}</p>
+        <p className="text-sm text-gray-500 dark:text-white">{location}</p>
       </div>
       <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
         <div className="flex items-center space-x-4 mt-2">
