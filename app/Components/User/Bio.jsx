@@ -1,14 +1,297 @@
-import { Title } from "chart.js";
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { RadarChartComponent } from "../Radarchart/Radar.jsx";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Avatar,
+  CircularProgress,
+  Chip,
+  Progress,
+  Input,
+} from "@nextui-org/react";
+import { CheckIcon } from "./checkicon/CheckIcon.jsx";
+import Image from "next/image.js";
+import Leetcode from "../../../public/leetcode.svg";
+import Add from "../../../public/add.svg";
 
-export default function bio() {
+export default function Bio() {
+  const [username, setUsername] = useState("");
+  const [stats, setStats] = useState(null);
+
+  const [showInput, setShowInput] = useState(false);
+  const [skills, setSkills] = useState([]);
+  const [newSkill, setNewSkill] = useState("");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://leetcode-stats-api.herokuapp.com/${username}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setStats(data);
+        } else {
+          console.error(
+            `Failed to fetch user data: ${response.status} ${response.statusText}`
+          );
+        }
+      } catch (error) {
+        console.error(`Error fetching data: ${error}`);
+      }
+    }
+
+    fetchData();
+  }, [username]);
+
+  const handleAddSkillsClick = () => {
+    setShowInput(true);
+  };
+
+  const handleInputChange = (e) => {
+    setNewSkill(e.target.value);
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && newSkill.trim() !== "" && skills.length < 8) {
+      setSkills([...skills, newSkill.trim()]);
+      setNewSkill("");
+      setShowInput(false);
+    }
+  };
+
+  const handleRemoveSkill = (skill) => {
+    setSkills(skills.filter((s) => s !== skill));
+  };
+
   return (
-    <div className=" h-full flex flex-col items-center  p-8 ">
-      <div className="flex-1 w-3/4 rounded-lg shadow-xl p-8 dark:bg-cyan-700">
-        <h4 className="text-xl dark:text-white text-gray-900 font-bold">About</h4>
-        <p className="mt-2 dark:text-white text-gray-700 text-justify ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, culpa! Debitis, expedita laudantium voluptas delectus quae quibusdam velit tempora nesciunt, aperiam nihil dolorum ipsam magnam adipisci, sunt impedit quis omnis perspiciatis fugit labore maxime? Officia doloribus tenetur rerum quos quas dicta laborum suscipit accusamus consequuntur officiis voluptatibus ipsa possimus impedit inventore ratione incidunt laboriosam, vitae nihil cupiditate labore sequi vero ipsum fugit nisi. Beatae, maiores? Minima qui deleniti quam placeat est voluptas sed voluptate, eligendi eveniet exercitationem tenetur adipisci, quasi numquam quo dolor maiores sapiente reiciendis officiis alias aliquam provident et blanditiis ea? Ipsum distinctio laudantium voluptas numquam possimus odit adipisci nihil repudiandae quae obcaecati consequuntur quibusdam dolorum ipsa inventore corrupti vero soluta quo provident cupiditate nulla totam, eum facilis tempora. Doloremque optio, dolorem vel dolor unde non dignissimos minus reprehenderit velit? Ea vitae maxime optio neque praesentium, non nulla eveniet dignissimos adipisci? Aliquid mollitia doloribus, magni cumque sit nobis, perspiciatis aspernatur voluptatum, ad saepe repellendus officia consequuntur sint id! Ducimus quisquam quia voluptates laborum praesentium sunt assumenda, nam ex maxime rem. Sed nihil eaque ab. Minus, voluptate impedit facere cupiditate dolorem autem recusandae doloribus aperiam mollitia accusantium maiores assumenda omnis ipsa. Rem vitae quaerat inventore, hic perferendis eveniet officiis!
-        </p>
+    <div className="h-full border-b-2 w-3/4 mx-auto flex flex-col items-center ">
+      <div className="flex flex-1 w-full  space-x-10 shadow-xl p-8 dark:bg-[#021526]">
+        <div className="w-[50%]">
+          <h4 className="text-xl dark:text-white text-gray-900 font-bold">
+            LeetCode Statistics
+          </h4>
+          <Card className="mt-4 p-4 h-auto space-y-3 dark:bg-[#000]">
+            <CardHeader className="flex gap-3 justify-center items-center">
+              <Image src={Leetcode} alt="Leetcode" width={40} height={40} />
+              <div className="w-full flex justify-between pr-4">
+                <div className="flex justify-start items-center w-40 flex-wrap md:flex-nowrap gap-4">
+                  <Input
+                    type="text"
+                    isClearable={true}
+                    variant="faded"
+                    size="sm"
+                    placeholder="user name"
+                    radius="lg"
+                    classNames={{
+                      input: "w-full p-2 text-white outline-none rounded-lg",
+                      label: "text-white",
+                    }}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-md">Ranking</p>
+                  <p className="text-small text-default-500">
+                    {stats?.ranking || 0}
+                  </p>
+                </div>
+              </div>
+            </CardHeader>
+            <Divider />
+            <CardBody className="flex flex-row w-full justify-between">
+              <div className="flex flex-col w-[50%] space-y-5">
+                <span>
+                  <Chip
+                    variant="dot"
+                    classNames={{
+                      dot: "w-2 h-2 pl-2 bg-[#20b9b8]",
+                      content: "w-[15rem] font-medium text-default-600",
+                      base: "bg-[#20b9b8]/20",
+                    }}
+                  >
+                    <div className="flex justify-around">
+                      <span>Easy Solved :</span>
+                      <span>
+                        {stats?.easySolved || 0} / {stats?.totalEasy || 0}
+                      </span>
+                    </div>
+                  </Chip>
+                </span>
+                <span>
+                  <Chip
+                    variant="dot"
+                    classNames={{
+                      dot: "w-2 h-2 pl-2 bg-[#feb200]",
+                      content: "w-[15rem] font-medium text-default-600",
+                      base: "bg-[#feb200]/20",
+                    }}
+                  >
+                    <div className="flex justify-around">
+                      <span>Medium Solved :</span>
+                      <span>
+                        {stats?.mediumSolved || 0} / {stats?.totalMedium || 0}
+                      </span>
+                    </div>
+                  </Chip>
+                </span>
+                <span>
+                  <Chip
+                    variant="dot"
+                    classNames={{
+                      dot: "w-2 h-2 pl-2 bg-[#f43632]",
+                      content: "w-[15rem] font-medium text-default-600",
+                      base: "bg-[#f43632]/20",
+                    }}
+                  >
+                    <div className="flex justify-around">
+                      <span>Hard Solved :</span>
+                      <span>
+                        {stats?.hardSolved || 0} / {stats?.totalHard || 0}
+                      </span>
+                    </div>
+                  </Chip>
+                </span>
+              </div>
+              <div className="mr-4">
+                <CircularProgress
+                  value={stats?.acceptanceRate || 100}
+                  color="warning"
+                  showValueLabel={true}
+                  strokeWidth={2}
+                  formatOptions={{
+                    style: "percent",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }}
+                  classNames={{
+                    svg: "w-36 h-24 drop-shadow-md",
+                    track: "dark:stroke-white/20 stroke-black/20",
+                  }}
+                />
+
+                <Chip
+                  startContent={<CheckIcon size={18} />}
+                  variant="faded"
+                  color="success"
+                  className="mt-2"
+                  classNames={{ base: "bg-success/10", content: "text-white" }}
+                >
+                  Acceptance Rate
+                </Chip>
+              </div>
+            </CardBody>
+            <Divider />
+            <CardFooter>
+              <span className="w-full">
+                <Progress
+                  label={`Total Solved : ${stats?.totalSolved || 0} / ${
+                    stats?.totalQuestions || 0
+                  }`}
+                  size="sm"
+                  value={stats?.totalSolved || 0}
+                  maxValue={stats?.totalQuestions || 0}
+                  color="warning"
+                  formatOptions={{ style: "percent" }}
+                  showValueLabel={true}
+                  classNames={{
+                    indicator: "bg-success h-[0.3rem]",
+                    base: "max-w-md h-[2.5rem]",
+                    track: "drop-shadow-md dark:bg-white/20 bg-black/50",
+                    label: "tracking-wider font-medium text-default-600",
+                    value: "text-foreground/60",
+                  }}
+                />
+              </span>
+            </CardFooter>
+          </Card>
+          <div>
+            <h4 className="text-xl pt-2 mt-2 dark:text-white text-gray-900 font-bold">
+              Top Skills
+            </h4>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {skills.map((skill) => (
+                <Chip
+                  variant="dot"
+                  classNames={{
+                    dot: "w-2 h-2 ml-2 bg-success",
+                    content: " font-medium text-default-600",
+                    base: "bg-primary/10",
+                  }}
+                  key={skill}
+                  // label={skill}
+                  onDelete={() => handleRemoveSkill(skill)}
+                  className="mr-2 mb-2 w-full"
+                >
+                  {" "}
+                  {skill}
+                </Chip>
+              ))}
+
+              {showInput && (
+                <div className="flex items-center ">
+                  <Input
+                    type="text"
+                    variant="bordered"
+                    value={newSkill}
+                    onChange={handleInputChange}
+                    onKeyDown={handleInputKeyDown}
+                    size="sm"
+                    radius="lg"
+                    classNames={{
+                      input: "w-full p-2 text-white outline-none rounded-lg",
+                      label: "text-white",
+                    }}
+                    placeholder="Enter your skills"
+                    className="border rounded p-2 mr-2 text-white bg-gray-800"
+                  />
+                  <button
+                    onClick={() => {
+                      if (newSkill.trim() !== "" && skills.length < 8) {
+                        setSkills([...skills, newSkill.trim()]);
+                        setNewSkill("");
+                        setShowInput(false);
+                      }
+                    }}
+                    className="bg-blue-800 text-white p-2 rounded"
+                  >
+                    Add
+                  </button>
+                </div>
+              )}
+
+              {!showInput && skills.length < 8 && (
+                <Chip
+                  onClick={handleAddSkillsClick}
+                  endContent={
+                    <Image
+                      size="sm"
+                      width={20}
+                      height={20}
+                      src={Add}
+                      alt="Add"
+                    />
+                  }
+                  variant="faded"
+                  color="success"
+                  className="mt-2 cursor-pointer"
+                  classNames={{ base: "bg-primary/10", content: "text-white" }}
+                >
+                  Add Skills
+                </Chip>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="w-[50%] flex justify-end">
+          <RadarChartComponent />
+        </div>
       </div>
     </div>
   );

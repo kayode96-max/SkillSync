@@ -17,7 +17,7 @@ const ImageUpload = ({ imageUrl }) => {
         className="w-full cursor-pointer h-[298px] m-0 overflow-hidden bg-slate-800 ut-label:text-lg ut-allowed-content:ut-uploading:text-red-300 flex flex-col items-center"
       />
       {imageUrl && (
-        <div className=" w-full h-full">
+        <div >
           <Image
             src={imageUrl}
             alt="Uploaded Image"

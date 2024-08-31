@@ -13,10 +13,10 @@ export default async function Page() {
 
   let userData = null;
   if (username) {
-    const response = await fetch(`https://api.github.com/users/${username}`);
+    const response = await fetch(`https://api.github.com/users/${username}`,{ cache: 'force-cache' });
     if (response.ok) {
       userData = await response.json();
-      console.log(userData);
+ 
     }else {
       // Log the error if the response is not OK
       console.error(`Failed to fetch user data: ${response.status} ${response.statusText}`);
@@ -28,10 +28,10 @@ export default async function Page() {
   }
 
   return (
-    <div>
-      <Header userData={userData} />
-      <Bio />
-      <Personal />
+    <div className="dark:bg-[#02090f]">
+      <Header userData={userData} username={username} />
+      <Bio  />
+      <Personal userData={userData} />
     </div>
   );
 }

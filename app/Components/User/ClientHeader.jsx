@@ -9,7 +9,7 @@ const ClientHeader = () => {
   return (
     <div>
       <ImageUpload imageUrl={imageUrl} />
-      <span className="absolute top-80 right-14">
+      <span className="absolute top-80 right-14 z-10">
         <ImgUpload onUpload={(url) => setImageUrl(url)} />
       </span>
     </div>

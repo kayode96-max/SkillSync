@@ -15,6 +15,7 @@ const ImgUpload = ({ onUpload }) => {
         onUploadError={(error) => {
           alert(`ERROR! ${error.message}`);
         }}
+        
       />
     </div>
   );

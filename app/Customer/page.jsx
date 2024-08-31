@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ServerPage = async () => {
   const session = await auth();
-  console.log("Session in ServerPage:", session);
+
   if (!session) {
     return (
       <Link href="/Integrations">
