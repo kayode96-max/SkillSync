@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect, createContext, useContext } from "react";
-import ClientHeader from "./ClientHeader.jsx";
+import Imgupload from "../ImgUpload/page.jsx"
 import SocialModal from "./SocialModal";
 import { Link, Button } from "@nextui-org/react";
 import Image from "next/image";
-import Twitter from "../../../public/twitter.png";
+import Banner from "../../../public/banner.png";
 import GitHub from "../../../public/github.svg";
 import Linkedin from "../../../public/linkedin.svg";
 import Stackoverflow from "../../../public/stack.svg";
@@ -39,7 +39,7 @@ export default function Header({ userData }) {
       stackoverflow: "",
     };
   });
-
+  const [imageUrl, setImageUrl] = useState(Banner);
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
@@ -54,7 +54,13 @@ export default function Header({ userData }) {
   return (
     <div className="h-full border-b-2 mx-auto w-3/4 mt-4 dark:bg-[#021526]  flex flex-col items-center justify-center p-8">
       <div className="w-full h-[300px] relative rounded-md ">
-        <ClientHeader />
+        <Image
+          src={imageUrl}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          className="w-full"
+        />
       </div>
 
       <div className="flex flex-col  w-full  justify-center items-center -mt-20 z-10">
@@ -63,9 +69,14 @@ export default function Header({ userData }) {
           className="w-40 border-4 border-white rounded-full"
           alt="Profile"
         />
+        <div className="absolute right-52">
+          <Imgupload setImageUrl={setImageUrl} justify="end"/>
+        </div>
+        
         <div className="flex items-center space-x-2 mt-2">
           <p className="dark:text-white text-2xl">{name}</p>
           <Image src={Tick} alt="blue tick" width={22} height={22} />
+          
         </div>
         <p className="text-gray-700 dark:text-white">{bio}</p>
         <p className="text-sm text-gray-500 dark:text-white">{location}</p>
