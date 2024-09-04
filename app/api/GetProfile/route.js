@@ -3,17 +3,18 @@ import dbConnect from "../../lib/db";
 import User from "../../models/User";
 
 export async function GET(request) {
+  
   try {
     await dbConnect();
-    const { username } = request.url; // Extract username from query params or URL
-    const user = await User.findOne({ username });
-    
+    const user = await User.findOne().select("bannerImage");
+
     if (!user) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    return NextResponse.json(user);
+    return NextResponse.json({ data: user.bannerImage });
   } catch (error) {
-    return NextResponse.json({ message: 'Error fetching user data' }, { status: 500 });
+    console.error(error);
+    return NextResponse.json({ message: "Error fetching user profile" }, { status: 500 });
   }
 }

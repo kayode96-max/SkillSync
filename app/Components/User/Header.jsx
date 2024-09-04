@@ -19,7 +19,14 @@ export const SocialLinksContext = createContext({
 });
 
 export default function Header({ userData }) {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [imageUrl, setImageUrl] = useState(Banner); // Use default banner initially
+  const [isLoading, setIsLoading] = useState(false); // Track image loading state
+  const username = userData?.login || "defaultUsername";
+
+  const [error, setError] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false); // Track any errors during fetching
+
+  // Social links logic
   const [socialLinks, setSocialLinks] = useState(() => {
     if (typeof window !== "undefined") {
       try {
@@ -40,9 +47,28 @@ export default function Header({ userData }) {
     };
   });
 
-  const [imageUrl, setImageUrl] = useState(Banner);
-  const username = userData?.login || "defaultUsername";
-  
+  const fetchUserImage = async () => {
+    setIsLoading(true);
+    setError(null); // Clear previous errors
+    try {
+      const response = await fetch(`/api/GetProfile`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch user Image: ${response.status}`);
+      }
+      const profileData = await response.json();
+      setImageUrl(profileData?.data || Banner); // Use default if not found
+    } catch (error) {
+      console.error(`Error fetching user banner image: ${error}`);
+      setError(error.message); // Set the error message
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserImage(); // Fetch image on component mount
+  }, []); // Re-fetch if username changes
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
@@ -57,13 +83,25 @@ export default function Header({ userData }) {
   return (
     <div className="h-full border-b-2 mx-auto w-3/4 mt-4 dark:bg-[#021526] flex flex-col items-center justify-center p-8">
       <div className="w-full h-[300px] relative rounded-md ">
-        <Image
-          src={imageUrl}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          className="w-full"
-        />
+        {isLoading ? (
+          // Show loading indicator while fetching image
+          <div className="flex items-center justify-center h-full">
+            <p>Loading...</p>
+          </div>
+        ) : error ? (
+          // Display error message if fetching failed
+          <div className="flex items-center justify-center h-full">
+            <p className="text-red-500">{error}</p>
+          </div>
+        ) : (
+          <Image
+            src={imageUrl}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="w-full"
+          />
+        )}
       </div>
 
       <div className="flex flex-col w-full justify-center items-center -mt-20 z-10">
