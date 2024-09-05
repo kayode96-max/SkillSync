@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect, createContext } from "react";
 import Imgupload from "../ImgUpload/page.jsx";
 import SocialModal from "./SocialModal";
@@ -19,61 +20,58 @@ export const SocialLinksContext = createContext({
 });
 
 export default function Header({ userData }) {
-  const [imageUrl, setImageUrl] = useState(Banner); // Use default banner initially
-  const [isLoading, setIsLoading] = useState(false); // Track image loading state
+  const [imageUrl, setImageUrl] = useState(Banner);
+  const [socialLinks, setSocialLinks] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const username = userData?.login || "defaultUsername";
 
-  const [error, setError] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false); // Track any errors during fetching
-
-  // Social links logic
-  const [socialLinks, setSocialLinks] = useState(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const storedLinks = localStorage.getItem("socialLinks");
-        if (storedLinks) {
-          return JSON.parse(storedLinks);
-        }
-      } catch (error) {
-        console.error("Error retrieving socialLinks from localStorage:", error);
-      }
-    }
-    return {
-      twitter: "",
-      linkedin: "",
-      website: "",
-      leetcode: "",
-      stackoverflow: "",
-    };
-  });
-
-  const fetchUserImage = async () => {
+  const fetchUserProfile = async () => {
     setIsLoading(true);
-    setError(null); // Clear previous errors
+    setError(null);
     try {
+      // Fetch profile data including bannerImage
       const response = await fetch(`/api/GetProfile`);
       if (!response.ok) {
         throw new Error(`Failed to fetch user Image: ${response.status}`);
       }
       const profileData = await response.json();
-      setImageUrl(profileData?.data || Banner); // Use default if not found
+      setImageUrl(profileData?.data || Banner);
     } catch (error) {
-      console.error(`Error fetching user banner image: ${error}`);
-      setError(error.message); // Set the error message
+      console.error(`Error fetching user profile: ${error}`);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchSocialLinks = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      // Fetch social links
+      const response = await fetch(`/api/GetSocial`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch social links: ${response.status}`);
+      }
+      const socialData = await response.json();
+      setSocialLinks(socialData.data || {});
+    } catch (error) {
+      console.error(`Error fetching social links: ${error}`);
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUserImage(); // Fetch image on component mount
-  }, []); // Re-fetch if username changes
+    fetchUserProfile();
+    fetchSocialLinks();
+  }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
-    }
-  }, [socialLinks]);
+  
 
   const avatarUrl = userData?.avatar_url || "https://via.placeholder.com/150";
   const name = userData?.name || "username";
@@ -82,14 +80,12 @@ export default function Header({ userData }) {
 
   return (
     <div className="h-full border-b-2 mx-auto w-3/4 mt-4 dark:bg-[#021526] flex flex-col items-center justify-center p-8">
-      <div className="w-full h-[300px] relative rounded-md ">
+      <div className="w-full h-[300px] relative rounded-md">
         {isLoading ? (
-          // Show loading indicator while fetching image
           <div className="flex items-center justify-center h-full">
             <p>Loading...</p>
           </div>
         ) : error ? (
-          // Display error message if fetching failed
           <div className="flex items-center justify-center h-full">
             <p className="text-red-500">{error}</p>
           </div>
@@ -122,7 +118,7 @@ export default function Header({ userData }) {
         <p className="text-sm text-gray-500 dark:text-white">{location}</p>
       </div>
 
-      <SocialLinksContext.Provider value={{ socialLinks, setSocialLinks }}>
+      <SocialLinksContext.Provider value={{ socialLinks, setSocialLinks }} >
         <div className="w-full flex items-center justify-center mt-2">
           <div className="flex justify-center space-x-4 items-center mt-2">
             <Link href={userData.html_url}>
@@ -132,6 +128,7 @@ export default function Header({ userData }) {
             <Link href={socialLinks.linkedin || "#"}>
               <Image src={Linkedin} alt="LinkedIn" width={24} height={24} />
             </Link>
+
             <Link href={socialLinks.twitter || "#"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -144,33 +141,27 @@ export default function Header({ userData }) {
                 <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
               </svg>
             </Link>
+
             <Link href={socialLinks.leetcode || "#"}>
               <Image src={Leetcode} alt="LeetCode" width={24} height={24} />
             </Link>
+
             <Link href={socialLinks.stackoverflow || "#"}>
               <Image src={Stackoverflow} alt="Stack Overflow" width={24} height={24} />
             </Link>
+
             <Link href={socialLinks.website || "#"}>
               <Image src={net} alt="Website" width={24} height={24} />
             </Link>
           </div>
-        </div>
-        <div className="ml-auto">
-          <Button
-            onClick={() => setModalOpen(true)}
-            color="primary"
-            variant="flat"
-          >
-            <Image src={Add} alt="Add button" width={24} height={24} />
+          <Button auto onClick={() => setModalOpen(true)} color="gradient">
+            Add
+            <Image src={Add} alt="add" width={15} height={15} />
           </Button>
-          <SocialModal
-            isOpen={isModalOpen}
-            onOpenChange={setModalOpen}
-            socialLinks={socialLinks}
-            setSocialLinks={setSocialLinks}
-          />
         </div>
       </SocialLinksContext.Provider>
+
+      <SocialModal isOpen={isModalOpen}  onOpenChange={setModalOpen} username={username}/>
     </div>
   );
 }

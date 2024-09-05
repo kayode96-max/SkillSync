@@ -10,7 +10,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: '', // Set a default value for banner image
   },
-  
+  socialLinks: {
+    twitter: { type: String, default: '' },
+    linkedin: { type: String, default: '' },
+    stackoverflow: { type: String, default: '' },
+    leetcode: { type: String, default: '' },
+    website: { type: String, default: '' },
+  },
   // ... other user data fields (optional)
 });
 

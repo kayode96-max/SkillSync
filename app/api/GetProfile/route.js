@@ -3,7 +3,6 @@ import dbConnect from "../../lib/db";
 import User from "../../models/User";
 
 export async function GET(request) {
-  
   try {
     await dbConnect();
     const user = await User.findOne().select("bannerImage");
