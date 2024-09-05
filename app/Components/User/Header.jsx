@@ -156,7 +156,7 @@ export default function Header({ userData }) {
           </div>
           <Button auto onClick={() => setModalOpen(true)} color="gradient">
             Add
-            <Image src={Add} alt="add" width={15} height={15} />
+            <Image src={Add} alt="add" width={24} height={24} />
           </Button>
         </div>
       </SocialLinksContext.Provider>

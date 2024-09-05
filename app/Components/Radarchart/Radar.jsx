@@ -44,9 +44,9 @@ const chartConfig = {
 
 export function RadarChartComponent() {
   return (
-    <Card className="pt-4 pb-4 border-slate-600 w-full ">
+    <Card className="pt-4 pb-4 dark:bg-slate-800 bg-gray-800 border-slate-600 w-full ">
       <CardHeader className="items-center pb-2">
-        <CardTitle>Profile Skills Assessment</CardTitle>
+        <CardTitle className="text-white">Profile Skills Assessment</CardTitle>
         <CardDescription className="text-white">
           Assessing various skill sets
         </CardDescription>
@@ -84,7 +84,7 @@ export function RadarChartComponent() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 pt-4 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
+        <div className="flex items-center gap-2 font-medium leading-none text-white">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="flex items-center gap-2 leading-none text-muted-foreground text-white">

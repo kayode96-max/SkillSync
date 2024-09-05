@@ -123,7 +123,7 @@ export default function Bio({ username }) {
           <h4 className="text-xl dark:text-white text-gray-900 font-bold">
             LeetCode Statistics
           </h4>
-          <Card className="mt-4 p-4 h-auto space-y-3 dark:bg-[#000]">
+          <Card className="mt-4 p-4 h-auto space-y-3 bg-[#000]">
             <CardHeader className="flex gap-3 justify-center items-center">
               <Image src={Leetcode} alt="Leetcode" width={40} height={40} />
               <div className="w-full flex justify-between pr-4">
@@ -136,15 +136,16 @@ export default function Bio({ username }) {
                     placeholder="user name"
                     radius="lg"
                     classNames={{
-                      input: "w-full p-2 text-white outline-none rounded-lg",
+                      input: " p-2 text-white bg-slate-800 outline-none rounded-lg",
                       label: "text-white",
+                      
                     }}
                     value={leetname}
                     onChange={(e) => setLeetname(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-md">Ranking</p>
+                  <p className="text-md text-white">Ranking</p>
                   <p className="text-small text-default-500">
                     {stats?.ranking || 0}
                   </p>
@@ -160,10 +161,10 @@ export default function Bio({ username }) {
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#20b9b8]",
                       content: "w-[15rem] font-medium text-default-600",
-                      base: "bg-[#20b9b8]/20",
+                      base: "bg-[#20b9b8]/20 border-none",
                     }}
                   >
-                    <div className="flex justify-around">
+                    <div className="flex justify-around text-white">
                       <span>Easy Solved :</span>
                       <span>
                         {stats?.easySolved || 0} / {stats?.totalEasy || 0}
@@ -177,10 +178,10 @@ export default function Bio({ username }) {
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#feb200]",
                       content: "w-[15rem] font-medium text-default-600",
-                      base: "bg-[#feb200]/20",
+                      base: "bg-[#feb200]/20 border-none",
                     }}
                   >
-                    <div className="flex justify-around">
+                    <div className="flex justify-around text-white">
                       <span>Medium Solved :</span>
                       <span>
                         {stats?.mediumSolved || 0} / {stats?.totalMedium || 0}
@@ -194,10 +195,10 @@ export default function Bio({ username }) {
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#f43632]",
                       content: "w-[15rem] font-medium text-default-600",
-                      base: "bg-[#f43632]/20",
+                      base: "bg-[#f43632]/20 border-none",
                     }}
                   >
-                    <div className="flex justify-around">
+                    <div className="flex justify-around text-white">
                       <span>Hard Solved :</span>
                       <span>
                         {stats?.hardSolved || 0} / {stats?.totalHard || 0}
@@ -206,7 +207,7 @@ export default function Bio({ username }) {
                   </Chip>
                 </span>
               </div>
-              <div className="mr-4">
+              <div className="mr-4 text-white">
                 <CircularProgress
                   value={stats?.acceptanceRate || 100}
                   color="warning"
@@ -219,7 +220,7 @@ export default function Bio({ username }) {
                   }}
                   classNames={{
                     svg: "w-36 h-24 drop-shadow-md",
-                    track: "dark:stroke-white/20 stroke-black/20",
+                    track: "stroke-white/20 ",
                   }}
                 />
 
@@ -228,7 +229,7 @@ export default function Bio({ username }) {
                   variant="faded"
                   color="success"
                   className="mt-2"
-                  classNames={{ base: "bg-success/10", content: "text-white" }}
+                  classNames={{ base: "bg-success/10 border-none", content: "text-white" }}
                 >
                   Acceptance Rate
                 </Chip>
@@ -236,7 +237,7 @@ export default function Bio({ username }) {
             </CardBody>
             <Divider />
             <CardFooter>
-              <span className="w-full">
+              <span className="w-full ">
                 <Progress
                   label={`Total Solved : ${stats?.totalSolved || 0} / ${
                     stats?.totalQuestions || 0
@@ -250,9 +251,9 @@ export default function Bio({ username }) {
                   classNames={{
                     indicator: "bg-success h-[0.3rem]",
                     base: "max-w-md h-[2.5rem]",
-                    track: "drop-shadow-md dark:bg-white/20 bg-black/50",
-                    label: "tracking-wider font-medium text-default-600",
-                    value: "text-foreground/60",
+                    track: "drop-shadow-md bg-white/20 ",
+                    label: "tracking-wider font-medium text-default-600 text-white",
+                    value: "text-foreground/60 text-white",
                   }}
                 />
               </span>
