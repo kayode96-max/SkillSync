@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
     leetcode: { type: String, default: '' },
     website: { type: String, default: '' },
   },
+  skills: {
+    type: [String],
+    default: [],
+  },
   // ... other user data fields (optional)
 });
 

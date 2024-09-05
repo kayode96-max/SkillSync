@@ -7,46 +7,90 @@ import {
   CardBody,
   CardFooter,
   Divider,
-  Avatar,
   CircularProgress,
   Chip,
   Progress,
   Input,
 } from "@nextui-org/react";
 import { CheckIcon } from "./checkicon/CheckIcon.jsx";
-import Image from "next/image.js";
+import Image from "next/image";
 import Leetcode from "../../../public/leetcode.svg";
 import Add from "../../../public/add.svg";
 
-export default function Bio() {
-  const [username, setUsername] = useState("");
+export default function Bio({ username }) {
+  const [leetname, setLeetname] = useState("");
   const [stats, setStats] = useState(null);
-
   const [showInput, setShowInput] = useState(false);
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState("");
 
+  // Fetch LeetCode stats
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(
-          `https://leetcode-stats-api.herokuapp.com/${username}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setStats(data);
-        } else {
-          console.error(
-            `Failed to fetch user data: ${response.status} ${response.statusText}`
+    async function fetchLeetCodeStats() {
+      if (leetname) {
+        try {
+          const leetcodeResponse = await fetch(
+            `https://leetcode-stats-api.herokuapp.com/${leetname}`
           );
+          if (leetcodeResponse.ok) {
+            const data = await leetcodeResponse.json();
+            setStats(data);
+          } else {
+            console.error(
+              `Failed to fetch LeetCode data: ${leetcodeResponse.status} ${leetcodeResponse.statusText}`
+            );
+          }
+        } catch (error) {
+          console.error(`Error fetching LeetCode data: ${error}`);
         }
-      } catch (error) {
-        console.error(`Error fetching data: ${error}`);
       }
     }
 
-    fetchData();
-  }, [username]);
+    fetchLeetCodeStats();
+  }, [leetname]);
+
+  // Fetch user skills
+  useEffect(() => {
+    async function fetchUserSkills() {
+      try {
+        const userResponse = await fetch(`/api/GetSkills`);
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          console.log("Fetched user skills:", userData.data); // Debug statement
+          setSkills(userData.data || []);
+        } else {
+          console.error(
+            `Failed to fetch user data: ${userResponse.status} ${userResponse.statusText}`
+          );
+        }
+      } catch (error) {
+        console.error(`Error fetching user skills: ${error}`);
+      }
+    }
+
+    fetchUserSkills();
+  }, []);
+
+  const updateSkills = async (updatedSkills) => {
+    try {
+      const response = await fetch("/api/UpdateSkills", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, skills: updatedSkills }),
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Failed to update skills: ${response.status} ${response.statusText}`
+        );
+      }
+      const result = await response.json();
+      console.log("Update response:", result);
+    } catch (error) {
+      console.error(`Error updating skills: ${error}`);
+    }
+  };
 
   const handleAddSkillsClick = () => {
     setShowInput(true);
@@ -58,19 +102,23 @@ export default function Bio() {
 
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter" && newSkill.trim() !== "" && skills.length < 8) {
-      setSkills([...skills, newSkill.trim()]);
+      const updatedSkills = [...skills, newSkill.trim()];
+      setSkills(updatedSkills);
+      updateSkills(updatedSkills);
       setNewSkill("");
       setShowInput(false);
     }
   };
 
   const handleRemoveSkill = (skill) => {
-    setSkills(skills.filter((s) => s !== skill));
+    const updatedSkills = skills.filter((s) => s !== skill);
+    setSkills(updatedSkills);
+    updateSkills(updatedSkills);
   };
 
   return (
-    <div className="h-full border-b-2 w-3/4 mx-auto flex flex-col items-center ">
-      <div className="flex flex-1 w-full  space-x-10 shadow-xl p-8 dark:bg-[#021526]">
+    <div className="h-full border-b-2 w-3/4 mx-auto flex flex-col items-center">
+      <div className="flex flex-1 w-full space-x-10 shadow-xl p-8 dark:bg-[#021526]">
         <div className="w-[50%]">
           <h4 className="text-xl dark:text-white text-gray-900 font-bold">
             LeetCode Statistics
@@ -91,8 +139,8 @@ export default function Bio() {
                       input: "w-full p-2 text-white outline-none rounded-lg",
                       label: "text-white",
                     }}
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={leetname}
+                    onChange={(e) => setLeetname(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col">
@@ -212,7 +260,7 @@ export default function Bio() {
           </Card>
           <div>
             <h4 className="text-xl pt-2 mt-2 dark:text-white text-gray-900 font-bold">
-              Top Skills
+              Top 8 Skills
             </h4>
             <div className="flex flex-wrap gap-2 mt-2">
               {skills.map((skill) => (
@@ -220,21 +268,19 @@ export default function Bio() {
                   variant="dot"
                   classNames={{
                     dot: "w-2 h-2 ml-2 bg-success",
-                    content: " font-medium text-default-600",
+                    content: "font-medium text-default-600",
                     base: "bg-primary/10",
                   }}
                   key={skill}
-                  // label={skill}
                   onDelete={() => handleRemoveSkill(skill)}
                   className="mr-2 mb-2 w-full"
                 >
-                  {" "}
                   {skill}
                 </Chip>
               ))}
 
               {showInput && (
-                <div className="flex items-center ">
+                <div className="flex items-center">
                   <Input
                     type="text"
                     variant="bordered"
@@ -243,17 +289,15 @@ export default function Bio() {
                     onKeyDown={handleInputKeyDown}
                     size="sm"
                     radius="lg"
-                    classNames={{
-                      input: "w-full p-2 text-white outline-none rounded-lg",
-                      label: "text-white",
-                    }}
                     placeholder="Enter your skills"
                     className="border rounded p-2 mr-2 text-white bg-gray-800"
                   />
                   <button
                     onClick={() => {
                       if (newSkill.trim() !== "" && skills.length < 8) {
-                        setSkills([...skills, newSkill.trim()]);
+                        const updatedSkills = [...skills, newSkill.trim()];
+                        setSkills(updatedSkills);
+                        updateSkills(updatedSkills);
                         setNewSkill("");
                         setShowInput(false);
                       }
