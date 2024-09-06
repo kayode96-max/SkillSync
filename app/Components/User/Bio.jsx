@@ -117,13 +117,13 @@ export default function Bio({ username }) {
   };
 
   return (
-    <div className="h-full w-full border-b-2  ">
-      <div className="flex flex-col items-center justify-center lg:space-x-10 shadow-xl p-8 dark:bg-[#021526] ">
+    <div className="h-full w-full lg:w-[75%] lg:mx-auto border-b-2  ">
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#021526] ">
         <div className="">
-          <h4 className="lg:text-xl text-base text-center dark:text-white text-gray-900 font-bold">
+          <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
             LeetCode Statistics
           </h4>
-          <Card className="mt-4 p-4  space-y-3 bg-[#000]">
+          <Card className="mt-4 p-4  space-y-3 bg-[#000] lg:max-w-[28rem]">
             <CardHeader className="flex lg:gap-3 gap-4  items-center">
               <Image src={Leetcode} alt="Leetcode" width={30} height={30} />
               <div className="w-full flex justify-between gap-4">
@@ -261,7 +261,7 @@ export default function Bio({ username }) {
             </CardFooter>
           </Card>
           <div>
-            <h4 className="lg:text-xl text-base text-center pt-2 mt-2 dark:text-white text-gray-900 font-bold">
+            <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start pt-2 mt-2 dark:text-white text-gray-900 font-bold">
               Top 8 Skills
             </h4>
             <div className="flex flex-wrap lg:gap-2 mt-2">
@@ -335,7 +335,7 @@ export default function Bio({ username }) {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center ">
+        <div className="mt-6 lg:mt-0 flex items-center lg:items-start lg:w-[40%] ">
           <RadarChartComponent />
         </div>
       </div>

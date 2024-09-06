@@ -44,7 +44,7 @@ const chartConfig = {
 
 export function RadarChartComponent() {
   return (
-    <Card className="pt-4 pb-4 dark:bg-slate-800 bg-gray-800 border-slate-600 w-full ">
+    <Card className="p-4 dark:bg-slate-800 bg-gray-800 border-slate-600 w-full ">
       <CardHeader className="items-center pb-2">
         <CardTitle className="text-white">Profile Skills Assessment</CardTitle>
         <CardDescription className="text-white">

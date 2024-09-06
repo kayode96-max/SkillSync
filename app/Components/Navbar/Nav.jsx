@@ -62,7 +62,7 @@ export default function Nav() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4 ml-80">
+      <NavbarContent className="hidden sm:flex gap-4">
         <NavbarItem>
           <Link color="foreground" href="/">
             Features

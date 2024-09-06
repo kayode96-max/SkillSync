@@ -31,15 +31,15 @@ export default async function Personal({ userData }) {
   }
 
   return (
-    <div className="flex justify-center ">
-      <div className="flex flex-col 2xl:w-3/4 w-full">
+    <div className="flex justify-center  ">
+      <div className="flex flex-col 2xl:w-3/4 w-full lg:w-[75%] lg:mx-auto ">
         <div className="flex-1 dark:bg-[#021526]  shadow-xl p-8">
-          <h4 className="lg:text-xl text-base text-center dark:text-white text-gray-900 font-bold">
+          <h4 className="lg:text-xl text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
             Latest Projects
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4">
             {data?.slice(0, 9).map((repo) => (
-              <Card key={repo.id} className="lg:p-6 p-2 bg-slate-900">
+              <Card key={repo.id} className="lg:p-4 p-2 bg-slate-900">
                 <CardHeader className="flex gap-3 pb-2">
                   <Image
                     alt="repository owner"
@@ -49,7 +49,7 @@ export default async function Personal({ userData }) {
                     width={30}
                   />
                   <div className="flex flex-col">
-                    <p className="lg:text-xl text-base font-bold">
+                    <p className=" text-base font-bold">
                       {repo.name || "unknown"}
                     </p>
                     <p className="text-small text-default-500">

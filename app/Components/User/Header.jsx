@@ -79,9 +79,9 @@ export default function Header({ userData }) {
   const location = userData?.location || "not fetched";
 
   return (
-    <div className=" w-full ">
+    <div className=" w-full lg:w-[75%] lg:mx-auto ">
       <div className="h-full border-b-2  mt-4 dark:bg-[#021526] flex flex-col items-center justify-center p-8">
-      <div className="w-full lg:h-[300px] h-[120px] shrink relative rounded-md">
+      <div className="w-full lg:h-[300px] sm:h-[200px] h-[120px] shrink relative rounded-md">
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
             <p>Loading...</p>
@@ -104,24 +104,24 @@ export default function Header({ userData }) {
       <div className="flex flex-col w-full justify-center items-center -mt-10 lg:-mt-20 z-10">
         <img
           src={avatarUrl}
-          className="w-20 lg:w-40 border-2 lg:border-4 border-white rounded-full"
+          className="w-20 sm:w-30 lg:w-40 border-2 lg:border-4 border-white rounded-full"
           alt="Profile"
         />
-        <div className="absolute lg:right-52 right-10 top-[14.5rem]">
+        <div className="absolute lg:right-56 sm:right-28 right-10 top-[14.5rem] sm:top-[20rem]">
           <Imgupload setImageUrl={setImageUrl} username={username} />
         </div>
 
         <div className="flex items-center space-x-2 mt-2">
-          <p className="dark:text-white lg:text-2xl text-base">{name}</p>
-          <Image src={Tick} alt="blue tick" width={15} height={15} />
+          <p className="dark:text-white lg:text-2xl sm:text-lg text-base">{name}</p>
+          <Image src={Tick} alt="blue tick" width={18} height={18} />
         </div>
-        <p className="text-gray-700 dark:text-white lg:text-2xl text-xs">{bio}</p>
+        <p className="text-gray-700 dark:text-white lg:text-xl text-center sm:text-lg text-xs">{bio}</p>
         <p className="lg:text-sm text-xs font-bold text-gray-500 dark:text-white">{location}</p>
       </div>
 
       <SocialLinksContext.Provider value={{ socialLinks, setSocialLinks }} >
         <div className="w-full flex items-center justify-center mt-2">
-          <div className="flex justify-center lg:space-x-4 space-x-2 items-center mt-2">
+          <div className="flex justify-center lg:space-x-4 sm:space-x-3 space-x-2 items-center mt-2">
             <Link href={userData.html_url}>
               <Image src={GitHub} alt="GitHub" width={20} height={20} />
             </Link>
