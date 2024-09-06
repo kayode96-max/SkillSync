@@ -54,7 +54,7 @@ export function RadarChartComponent() {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="w-full aspect-square max-h-[220px] "
+          className="w-full lg:aspect-square max-h-[220px] "
         >
           <RadarChart
             data={chartData}
@@ -83,7 +83,7 @@ export function RadarChartComponent() {
           </RadarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 pt-4 text-sm">
+      <CardFooter className="flex-col gap-2 pt-4 text-xs lg:text-sm">
         <div className="flex items-center gap-2 font-medium leading-none text-white">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>

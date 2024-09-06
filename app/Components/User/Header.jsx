@@ -79,8 +79,9 @@ export default function Header({ userData }) {
   const location = userData?.location || "not fetched";
 
   return (
-    <div className="h-full border-b-2 mx-auto w-3/4 mt-4 dark:bg-[#021526] flex flex-col items-center justify-center p-8">
-      <div className="w-full h-[300px] relative rounded-md">
+    <div className=" w-full ">
+      <div className="h-full border-b-2  mt-4 dark:bg-[#021526] flex flex-col items-center justify-center p-8">
+      <div className="w-full lg:h-[300px] h-[120px] shrink relative rounded-md">
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
             <p>Loading...</p>
@@ -93,47 +94,47 @@ export default function Header({ userData }) {
           <Image
             src={imageUrl}
             layout="fill"
-            objectFit="cover"
+            objectFit="fill"
             objectPosition="center"
             className="w-full"
           />
         )}
       </div>
 
-      <div className="flex flex-col w-full justify-center items-center -mt-20 z-10">
+      <div className="flex flex-col w-full justify-center items-center -mt-10 lg:-mt-20 z-10">
         <img
           src={avatarUrl}
-          className="w-40 border-4 border-white rounded-full"
+          className="w-20 lg:w-40 border-2 lg:border-4 border-white rounded-full"
           alt="Profile"
         />
-        <div className="absolute right-52">
+        <div className="absolute lg:right-52 right-10 top-[14.5rem]">
           <Imgupload setImageUrl={setImageUrl} username={username} />
         </div>
 
         <div className="flex items-center space-x-2 mt-2">
-          <p className="dark:text-white text-2xl">{name}</p>
-          <Image src={Tick} alt="blue tick" width={22} height={22} />
+          <p className="dark:text-white lg:text-2xl text-base">{name}</p>
+          <Image src={Tick} alt="blue tick" width={15} height={15} />
         </div>
-        <p className="text-gray-700 dark:text-white">{bio}</p>
-        <p className="text-sm text-gray-500 dark:text-white">{location}</p>
+        <p className="text-gray-700 dark:text-white lg:text-2xl text-xs">{bio}</p>
+        <p className="lg:text-sm text-xs font-bold text-gray-500 dark:text-white">{location}</p>
       </div>
 
       <SocialLinksContext.Provider value={{ socialLinks, setSocialLinks }} >
         <div className="w-full flex items-center justify-center mt-2">
-          <div className="flex justify-center space-x-4 items-center mt-2">
+          <div className="flex justify-center lg:space-x-4 space-x-2 items-center mt-2">
             <Link href={userData.html_url}>
-              <Image src={GitHub} alt="GitHub" width={24} height={24} />
+              <Image src={GitHub} alt="GitHub" width={20} height={20} />
             </Link>
 
             <Link href={socialLinks.linkedin || "#"}>
-              <Image src={Linkedin} alt="LinkedIn" width={24} height={24} />
+              <Image src={Linkedin} alt="LinkedIn" width={20} height={20} />
             </Link>
 
             <Link href={socialLinks.twitter || "#"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 fill="currentColor"
                 className="bi bi-twitter-x"
                 viewBox="0 0 16 16"
@@ -143,25 +144,27 @@ export default function Header({ userData }) {
             </Link>
 
             <Link href={socialLinks.leetcode || "#"}>
-              <Image src={Leetcode} alt="LeetCode" width={24} height={24} />
+              <Image src={Leetcode} alt="LeetCode" width={20} height={20} />
             </Link>
 
             <Link href={socialLinks.stackoverflow || "#"}>
-              <Image src={Stackoverflow} alt="Stack Overflow" width={24} height={24} />
+              <Image src={Stackoverflow} alt="Stack Overflow" width={20} height={20} />
             </Link>
 
             <Link href={socialLinks.website || "#"}>
-              <Image src={net} alt="Website" width={24} height={24} />
+              <Image src={net} alt="Website" width={20} height={20} />
             </Link>
           </div>
           <Button auto onClick={() => setModalOpen(true)} color="gradient">
             Add
-            <Image src={Add} alt="add" width={24} height={24} />
+            <Image src={Add} alt="add" width={20} height={20} />
           </Button>
         </div>
       </SocialLinksContext.Provider>
 
       <SocialModal isOpen={isModalOpen}  onOpenChange={setModalOpen} username={username}/>
     </div>
+    </div>
+    
   );
 }

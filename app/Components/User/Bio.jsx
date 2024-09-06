@@ -117,17 +117,17 @@ export default function Bio({ username }) {
   };
 
   return (
-    <div className="h-full border-b-2 w-3/4 mx-auto flex flex-col items-center">
-      <div className="flex flex-1 w-full space-x-10 shadow-xl p-8 dark:bg-[#021526]">
-        <div className="w-[50%]">
-          <h4 className="text-xl dark:text-white text-gray-900 font-bold">
+    <div className="h-full w-full border-b-2  ">
+      <div className="flex flex-col items-center justify-center lg:space-x-10 shadow-xl p-8 dark:bg-[#021526] ">
+        <div className="">
+          <h4 className="lg:text-xl text-base text-center dark:text-white text-gray-900 font-bold">
             LeetCode Statistics
           </h4>
-          <Card className="mt-4 p-4 h-auto space-y-3 bg-[#000]">
-            <CardHeader className="flex gap-3 justify-center items-center">
-              <Image src={Leetcode} alt="Leetcode" width={40} height={40} />
-              <div className="w-full flex justify-between pr-4">
-                <div className="flex justify-start items-center w-40 flex-wrap md:flex-nowrap gap-4">
+          <Card className="mt-4 p-4  space-y-3 bg-[#000]">
+            <CardHeader className="flex lg:gap-3 gap-4  items-center">
+              <Image src={Leetcode} alt="Leetcode" width={30} height={30} />
+              <div className="w-full flex justify-between gap-4">
+                <div className="flex justify-start items-center lg:w-40  flex-wrap md:flex-nowrap gap-4">
                   <Input
                     type="text"
                     isClearable={true}
@@ -144,8 +144,8 @@ export default function Bio({ username }) {
                     onChange={(e) => setLeetname(e.target.value)}
                   />
                 </div>
-                <div className="flex flex-col">
-                  <p className="text-md text-white">Ranking</p>
+                <div className="flex flex-col text-center">
+                  <p className="text-base text-white">Ranking</p>
                   <p className="text-small text-default-500">
                     {stats?.ranking || 0}
                   </p>
@@ -153,14 +153,14 @@ export default function Bio({ username }) {
               </div>
             </CardHeader>
             <Divider />
-            <CardBody className="flex flex-row w-full justify-between">
-              <div className="flex flex-col w-[50%] space-y-5">
+            <CardBody className="flex flex-row justify-between gap-4">
+              <div className="flex flex-col lg:space-y-5 space-y-2">
                 <span>
                   <Chip
                     variant="dot"
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#20b9b8]",
-                      content: "w-[15rem] font-medium text-default-600",
+                      content: "lg:w-[15rem] w-[10rem] font-medium text-default-600",
                       base: "bg-[#20b9b8]/20 border-none",
                     }}
                   >
@@ -177,7 +177,7 @@ export default function Bio({ username }) {
                     variant="dot"
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#feb200]",
-                      content: "w-[15rem] font-medium text-default-600",
+                      content: "lg:w-[15rem] w-[11rem] font-medium text-default-600",
                       base: "bg-[#feb200]/20 border-none",
                     }}
                   >
@@ -194,7 +194,7 @@ export default function Bio({ username }) {
                     variant="dot"
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#f43632]",
-                      content: "w-[15rem] font-medium text-default-600",
+                      content: "lg:w-[15rem] w-[10rem] font-medium text-default-600",
                       base: "bg-[#f43632]/20 border-none",
                     }}
                   >
@@ -207,7 +207,7 @@ export default function Bio({ username }) {
                   </Chip>
                 </span>
               </div>
-              <div className="mr-4 text-white">
+              <div className=" text-white flex flex-col items-center">
                 <CircularProgress
                   value={stats?.acceptanceRate || 100}
                   color="warning"
@@ -219,17 +219,18 @@ export default function Bio({ username }) {
                     maximumFractionDigits: 2,
                   }}
                   classNames={{
-                    svg: "w-36 h-24 drop-shadow-md",
+                    svg: "lg:w-36 w-25 lg:h-24 h-16 drop-shadow-md",
                     track: "stroke-white/20 ",
+                    value: "text-xs lg:text-lg text-white font-medium",
                   }}
                 />
 
                 <Chip
-                  startContent={<CheckIcon size={18} />}
+                  startContent={<CheckIcon size={14} />}
                   variant="faded"
                   color="success"
                   className="mt-2"
-                  classNames={{ base: "bg-success/10 border-none", content: "text-white" }}
+                  classNames={{ base: "bg-success/10 border-none", content: "text-white text-xs " }}
                 >
                   Acceptance Rate
                 </Chip>
@@ -260,10 +261,10 @@ export default function Bio({ username }) {
             </CardFooter>
           </Card>
           <div>
-            <h4 className="text-xl pt-2 mt-2 dark:text-white text-gray-900 font-bold">
+            <h4 className="lg:text-xl text-base text-center pt-2 mt-2 dark:text-white text-gray-900 font-bold">
               Top 8 Skills
             </h4>
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap lg:gap-2 mt-2">
               {skills.map((skill) => (
                 <Chip
                   variant="dot"
@@ -334,7 +335,7 @@ export default function Bio({ username }) {
           </div>
         </div>
 
-        <div className="w-[50%] flex justify-end">
+        <div className="mt-6 flex items-center ">
           <RadarChartComponent />
         </div>
       </div>

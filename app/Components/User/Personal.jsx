@@ -31,25 +31,25 @@ export default async function Personal({ userData }) {
   }
 
   return (
-    <div className="flex justify-center  w-3/4 mx-auto">
-      <div className="flex flex-col 2xl:w-3/4">
+    <div className="flex justify-center ">
+      <div className="flex flex-col 2xl:w-3/4 w-full">
         <div className="flex-1 dark:bg-[#021526]  shadow-xl p-8">
-          <h4 className="text-xl dark:text-white text-gray-900 font-bold">
+          <h4 className="lg:text-xl text-base text-center dark:text-white text-gray-900 font-bold">
             Latest Projects
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4">
             {data?.slice(0, 9).map((repo) => (
-              <Card key={repo.id} className="p-6 bg-slate-900">
+              <Card key={repo.id} className="lg:p-6 p-2 bg-slate-900">
                 <CardHeader className="flex gap-3 pb-2">
                   <Image
                     alt="repository owner"
-                    height={40}
+                    height={30}
                     radius="sm"
                     src={repo.owner.avatar_url}
-                    width={40}
+                    width={30}
                   />
                   <div className="flex flex-col">
-                    <p className="text-md font-bold">
+                    <p className="lg:text-xl text-base font-bold">
                       {repo.name || "unknown"}
                     </p>
                     <p className="text-small text-default-500">
@@ -58,7 +58,7 @@ export default async function Personal({ userData }) {
                   </div>
                 </CardHeader>
                 <Divider />
-                <CardBody className="pt-2 pb-2">
+                <CardBody className="pt-2 pb-2 flex justify-center items-center">
                   {repo.description ? (
                     <p>{repo.description}</p>
                   ) : (

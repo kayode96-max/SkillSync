@@ -33,15 +33,28 @@ const ImgUpload = ({ setImageUrl, username }) => {
   };
 
   return (
-    <div>
+    <>
       <UploadButton
         endpoint="imageUploader"
+        content={{
+          button({ ready }) {
+            if (ready) return <>Upload</>;
+       
+            return "ready..";
+          },
+          allowedContent({ ready, isUploading }) {
+            if (!ready) return "Checking";
+            if (isUploading) return "It's uploading";
+            return `upload Image`;
+          },
+        }}
         onClientUploadComplete={handleUploadComplete}
         onUploadError={(error) => {
           alert(`ERROR! ${error.message}`);
         }}
+        className='ut-button:w-16  text-xs ut-button:h-6 ut-button:p-2 ut-button:text-xs ut-button:text-center ut-allowed-content:text-xs'
       />
-    </div>
+    </>
   );
 };
 
