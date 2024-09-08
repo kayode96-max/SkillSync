@@ -19,6 +19,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../../@/components/ui/chart";
+import pulse from "../../../public/pulse.png";
+import Image from "next/image";
 
 // Updated sample data for the radar chart
 const chartData = [
@@ -44,9 +46,12 @@ const chartConfig = {
 
 export function RadarChartComponent() {
   return (
-    <Card className="p-4 dark:bg-[#101214] bg-gray-800 border-slate-600 w-full ">
+    <Card className="p-4  bg-[#0C0C0C] rounded-lg border-slate-600 w-full ">
       <CardHeader className="items-center pb-2">
-        <CardTitle className="text-white">Profile Skills Assessment</CardTitle>
+        <CardTitle className="text-white flex gap-2">
+          <Image src={pulse} width={20} height={10} alt="project-png" />
+          Profile Skills Assessment
+          </CardTitle>
         <CardDescription className="text-white">
           Assessing various skill sets
         </CardDescription>
@@ -85,7 +90,7 @@ export function RadarChartComponent() {
       </CardContent>
       <CardFooter className="flex-col gap-2 pt-4 text-xs lg:text-sm">
         <div className="flex items-center gap-2 font-medium leading-none text-white">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Higher skills leads to higher growth <TrendingUp className="h-4 w-4" />
         </div>
         <div className="flex items-center gap-2 leading-none text-muted-foreground text-white">
           Assessing skills performance

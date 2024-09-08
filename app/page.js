@@ -28,7 +28,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="dark:bg-[#000000] pt-4">
+    <div className="dark:bg-[#000000] bg-[#DEE5D4] pt-4">
       <Header userData={userData} username={username} />
       <Bio username={username} />
       <Personal userData={userData} />

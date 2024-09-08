@@ -15,9 +15,9 @@ import {
 import { CheckIcon } from "./checkicon/CheckIcon.jsx";
 import Image from "next/image";
 import Leetcode from "../../../public/leetcode.svg";
-import Add from "../../../public/add.svg";
-import leetstats from "../../../public/stats.png";
-import skillicon from "../../../public/skills.png";
+import Add from "../../../public/smalladd.png";
+import leetstats from "../../../public/stats.svg";
+import skillicon from "../../../public/skills.svg";
 
 export default function Bio({ username }) {
   const [leetname, setLeetname] = useState("");
@@ -120,16 +120,17 @@ export default function Bio({ username }) {
 
   return (
     <div className="h-full w-full lg:w-[75%] lg:mx-auto border-b-2 border-slate-600  ">
-      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#1b1f23] ">
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#1b1f23] bg-[#ffffff]">
         <div className="">
           <div className="flex gap-2">
-            <Image src={leetstats} width={20} height={10} alt="stats" />
+            <Image src={leetstats} width={30} height={20} alt="stats" />
+            
             <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
               LeetCode Statistics
             </h4>
           </div>
 
-          <Card className="mt-4 p-4  space-y-3 bg-[#0C0C0C] lg:max-w-[28rem]">
+          <Card className="mt-4 p-4 mb-2 space-y-3 bg-[#0C0C0C] lg:max-w-[28rem]">
             <CardHeader className="flex lg:gap-3 gap-4  items-center">
               <Image src={Leetcode} alt="Leetcode" width={30} height={30} />
               <div className="w-full flex justify-between gap-4">
@@ -139,11 +140,11 @@ export default function Bio({ username }) {
                     isClearable={true}
                     variant="faded"
                     size="sm"
-                    placeholder="user name"
+                    placeholder="Enter username"
                     radius="lg"
                     classNames={{
                       input:
-                        " p-2 text-white bg-slate-800 outline-none rounded-lg",
+                        " p-2 dark:text-white  outline-none rounded-lg",
                       label: "text-white",
                     }}
                     value={leetname}
@@ -275,8 +276,8 @@ export default function Bio({ username }) {
           </Card>
           <div>
             <div className="flex gap-2">
-              <Image src={leetstats} width={20} height={10} alt="skills" />
-              <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start pt-2 mt-2 dark:text-white text-gray-900 font-bold">
+              <Image src={skillicon} width={30} height={20} alt="skills" />
+              <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start mt-2 dark:text-white text-gray-900 font-bold">
                 Top Skills
               </h4>
             </div>
@@ -287,8 +288,8 @@ export default function Bio({ username }) {
                   variant="dot"
                   classNames={{
                     dot: "w-2 h-2 ml-2 bg-success",
-                    content: "font-medium text-default-600",
-                    base: "bg-primary/10",
+                    content: "font-medium dark:text-default-600 text-slate-200",
+                    base: "bg-[#0C0C0C]",
                   }}
                   key={skill}
                   onDelete={() => handleRemoveSkill(skill)}
@@ -299,17 +300,23 @@ export default function Bio({ username }) {
               ))}
 
               {showInput && (
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                   <Input
                     type="text"
-                    variant="bordered"
+                    variant="faded"
                     value={newSkill}
                     onChange={handleInputChange}
                     onKeyDown={handleInputKeyDown}
                     size="sm"
                     radius="lg"
                     placeholder="Enter your skills"
-                    className="border rounded p-2 mr-2 text-white bg-gray-800"
+                    classNames={{
+                      input:
+                        " p-2 text-white outline-none rounded-lg",
+                      label: "text-white",
+                      
+                      inputWrapper:"bg-[#0C0C0C]"
+                    }}
                   />
                   <button
                     onClick={() => {
@@ -343,7 +350,7 @@ export default function Bio({ username }) {
                   variant="faded"
                   color="success"
                   className="mt-2 cursor-pointer"
-                  classNames={{ base: "bg-primary/10", content: "text-white" }}
+                  classNames={{ base: "dark:bg-primary/10 bg-black/70", content: "text-white" }}
                 >
                   Add Skills
                 </Chip>

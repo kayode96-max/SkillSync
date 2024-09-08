@@ -6,11 +6,11 @@ import {
   CardFooter,
   Divider,
   Link,
-  Image,
   Button,
 } from "@nextui-org/react";
 import Cardimage from "../../../public/card.jpeg";
-import pic from "../../../public/project.png"
+import pic from "../../../public/project.png";
+import Image from "next/image";
 
 export default async function Personal({ userData }) {
   const username = userData?.login;
@@ -34,7 +34,7 @@ export default async function Personal({ userData }) {
   return (
     <div className="flex justify-center  ">
       <div className="flex flex-col 2xl:w-3/4 w-full lg:w-[75%] lg:mx-auto ">
-        <div className="flex-1 dark:bg-[#1b1f23]  shadow-xl p-8">
+        <div className="flex-1 dark:bg-[#1b1f23] bg-[#ffffff] shadow-xl p-8">
           <div className="flex gap-2">
             <Image src={pic} width={20} height={10} alt="project-png"/>
             <h4 className="lg:text-xl text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
@@ -44,7 +44,7 @@ export default async function Personal({ userData }) {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4">
             {data?.slice(0, 9).map((repo) => (
-              <Card key={repo.id} className="lg:p-4 p-2 dark:bg-[#101214]">
+              <Card key={repo.id} className="lg:p-4 p-2 bg-[#0C0C0C]">
                 <CardHeader className="flex gap-3 pb-2">
                   <Image
                     alt="repository owner"
@@ -54,10 +54,10 @@ export default async function Personal({ userData }) {
                     width={30}
                   />
                   <div className="flex flex-col">
-                    <p className=" text-base font-bold">
+                    <p className=" text-base font-bold text-slate-200">
                       {repo.name || "unknown"}
                     </p>
-                    <p className="text-small text-default-500">
+                    <p className="text-small text-slate-300">
                       {repo.language || "No language specified"}
                     </p>
                   </div>
@@ -71,19 +71,20 @@ export default async function Personal({ userData }) {
                       src={Cardimage.src}
                       alt="No description available"
                       width={300}
+                      height={0}
                     />
                   )}
                 </CardBody>
                 <Divider />
-                <CardFooter className="pt-2 flex justify-between">
+                <CardFooter className="pt-2 flex justify-between ">
                   <Button color="secondary" variant="ghost">
                     {" "}
-                    <Link isExternal href={repo.html_url}>
+                    <Link isExternal href={repo.html_url} className="text-slate-200">
                       Source Code
                     </Link>
                   </Button>
 
-                  <Link isExternal showAnchorIcon href={repo.homepage || "/"}>
+                  <Link isExternal showAnchorIcon href={repo.homepage || "/"} className="text-slate-200">
                     Live Preview
                   </Link>
                 </CardFooter>

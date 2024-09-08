@@ -88,12 +88,12 @@ export default function SocialModal({ isOpen, onOpenChange, username, initialSoc
             value={twitter}
             onChange={(e) => handleInputChange(e, 'twitter')}
             classNames={{
-              label: "block text-white text-sm absolute top-1 left-2 right-1",
+              label: "block dark:text-white text-sm absolute top-1 left-2 right-1",
               base: "rounded-md",
               inputWrapper: "h-14 rounded-md",
               innerWrapper: "h-14 flex flex-col justify-end rounded-md",
               input: [
-                "text-white/80",
+                "dark:text-white/80",
                 "placeholder:text-slate-600",
                 "w-full",
                 "pt-4 mt-2",
@@ -109,12 +109,12 @@ export default function SocialModal({ isOpen, onOpenChange, username, initialSoc
             value={linkedin}
             onChange={(e) => handleInputChange(e, 'linkedin')}
             classNames={{
-              label: "block text-white text-sm absolute top-1 left-2 right-1",
+              label: "block dark:text-white text-sm absolute top-1 left-2 right-1",
               base: "rounded-md",
               inputWrapper: "h-14 rounded-md",
               innerWrapper: "h-14 flex flex-col justify-end rounded-md",
               input: [
-                "text-white/80",
+                "dark:text-white/80",
                 "placeholder:text-slate-600",
                 "w-full",
                 "pt-4 mt-2",
@@ -130,12 +130,12 @@ export default function SocialModal({ isOpen, onOpenChange, username, initialSoc
             value={stackoverflow}
             onChange={(e) => handleInputChange(e, 'stackoverflow')}
             classNames={{
-              label: "block text-white text-sm absolute top-1 left-2 right-1",
+              label: "block dark:text-white text-sm absolute top-1 left-2 right-1",
               base: "rounded-md",
               inputWrapper: "h-14 rounded-md",
               innerWrapper: "h-14 flex flex-col justify-end rounded-md",
               input: [
-                "text-white/80",
+                "dark:text-white/80",
                 "placeholder:text-slate-600",
                 "w-full",
                 "pt-4 mt-2",
@@ -151,12 +151,12 @@ export default function SocialModal({ isOpen, onOpenChange, username, initialSoc
             value={leetcode}
             onChange={(e) => handleInputChange(e, 'leetcode')}
             classNames={{
-              label: "block text-white text-sm absolute top-1 left-2 right-1",
+              label: "block dark:text-white text-sm absolute top-1 left-2 right-1",
               base: "rounded-md",
               inputWrapper: "h-14 rounded-md",
               innerWrapper: "h-14 flex flex-col justify-end rounded-md",
               input: [
-                "text-white/80",
+                "dark:text-white/80",
                 "placeholder:text-slate-600",
                 "w-full",
                 "pt-4 mt-2",
@@ -172,12 +172,12 @@ export default function SocialModal({ isOpen, onOpenChange, username, initialSoc
             value={website}
             onChange={(e) => handleInputChange(e, 'website')}
             classNames={{
-              label: "block text-white text-sm absolute top-1 left-2 right-1",
+              label: "block dark:text-white text-sm absolute top-1 left-2 right-1",
               base: "rounded-md",
               inputWrapper: "h-14 rounded-md",
               innerWrapper: "h-14 flex flex-col justify-end rounded-md",
               input: [
-                "text-white/80",
+                "dark:text-white/80",
                 "placeholder:text-slate-600",
                 "w-full",
                 "pt-4 mt-2",

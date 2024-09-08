@@ -23,7 +23,7 @@ export default function TestDarkmode() {
     <Switch
       checked={isDarkMode}
       size="sm"
-      color="primary"
+      color="success"
       thumbIcon={({ isSelected, className }) =>
         isSelected ? (
           <SunIcon className={className} />

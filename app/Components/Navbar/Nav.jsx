@@ -50,7 +50,7 @@ export default function Nav() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="flex justify-between bg-slate-200 dark:bg-[#1b1f23] h-14 "
+      className="flex justify-between bg-[#1E201E]/50 dark:bg-[#1b1f23] h-14 "
       classNames={{
         wrapper:"max-w-full",
         base:"data-justify"
@@ -93,11 +93,11 @@ export default function Nav() {
       </NavbarContent> */}
 
       <NavbarContent className="mr-6 flex gap-4" justify="end">
-      <NavbarItem className="hidden lg:flex">
+      <NavbarItem className="hidden lg:flex md:flex sm:flex">
           <Darkmode />
         </NavbarItem>
         {!session ? (
-          <NavbarItem className="hidden lg:flex">
+          <NavbarItem className="hidden lg:flex ">
             <Link href="/Login">Login</Link>
           </NavbarItem>
         ) : (
@@ -118,12 +118,12 @@ export default function Nav() {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{username || "User"}</p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
+              {/* <DropdownItem key="settings">My Settings</DropdownItem>
               <DropdownItem key="team_settings">Team Settings</DropdownItem>
               <DropdownItem key="analytics">Analytics</DropdownItem>
               <DropdownItem key="system">System</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+              <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem> */}
               <DropdownItem
                 key="logout"
                 color="danger"
@@ -138,24 +138,18 @@ export default function Nav() {
 
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+        
+          <NavbarMenuItem >
             <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
+              color={"primary"}
               className="w-full"
               href="#"
               size="lg"
             >
-              {item}
+              <Darkmode/>
             </Link>
           </NavbarMenuItem>
-        ))}
+       
       </NavbarMenu>
     </Navbar>
   );
