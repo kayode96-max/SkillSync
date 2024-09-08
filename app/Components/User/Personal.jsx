@@ -10,6 +10,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import Cardimage from "../../../public/card.jpeg";
+import pic from "../../../public/project.png"
 
 export default async function Personal({ userData }) {
   const username = userData?.login;
@@ -33,13 +34,17 @@ export default async function Personal({ userData }) {
   return (
     <div className="flex justify-center  ">
       <div className="flex flex-col 2xl:w-3/4 w-full lg:w-[75%] lg:mx-auto ">
-        <div className="flex-1 dark:bg-[#021526]  shadow-xl p-8">
-          <h4 className="lg:text-xl text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
+        <div className="flex-1 dark:bg-[#1b1f23]  shadow-xl p-8">
+          <div className="flex gap-2">
+            <Image src={pic} width={20} height={10} alt="project-png"/>
+            <h4 className="lg:text-xl text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
             Latest Projects
           </h4>
+          </div>
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4">
             {data?.slice(0, 9).map((repo) => (
-              <Card key={repo.id} className="lg:p-4 p-2 bg-slate-900">
+              <Card key={repo.id} className="lg:p-4 p-2 dark:bg-[#101214]">
                 <CardHeader className="flex gap-3 pb-2">
                   <Image
                     alt="repository owner"

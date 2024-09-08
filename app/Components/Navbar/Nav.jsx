@@ -22,9 +22,10 @@ import dynamic from "next/dynamic";
 import { signOut, useSession } from "next-auth/react";
 import Logout from "../../Login/Logout.jsx";
 import Image from "next/image";
+import Logo from "../../../public/profilelogo.svg"
 
 const Darkmode = dynamic(() => import("../Darkmode/page.jsx"), { ssr: false });
-import { AcmeLogo } from "./Logo.jsx";
+// import { AcmeLogo } from "./Logo.jsx";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,20 +50,25 @@ export default function Nav() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="flex justify-between bg-slate-200 dark:bg-cyan-700 h-14"
+      className="flex justify-between bg-slate-200 dark:bg-[#1b1f23] h-14 "
+      classNames={{
+        wrapper:"max-w-full",
+        base:"data-justify"
+      }}
     >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand className="ml-6">
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+        <NavbarBrand className="ml-6 flex gap-2">
+          {/* <AcmeLogo /> */}
+          <Image src={Logo} width={45} height={45} alt="logo"/>
+          <p className="cinzel">SKILL SYNC</p>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4">
+      {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="/">
             Features
@@ -78,15 +84,18 @@ export default function Nav() {
             Integrations
           </Link>
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
 
-      <NavbarContent className="hidden sm:flex gap-6 ml-40" justify="end">
+      {/* <NavbarContent className="hidden sm:flex gap-6 " justify="end">
         <NavbarItem className="hidden lg:flex">
           <Darkmode />
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
 
-      <NavbarContent className="mr-6" justify="end">
+      <NavbarContent className="mr-6 flex gap-4" justify="end">
+      <NavbarItem className="hidden lg:flex">
+          <Darkmode />
+        </NavbarItem>
         {!session ? (
           <NavbarItem className="hidden lg:flex">
             <Link href="/Login">Login</Link>

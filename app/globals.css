@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --font-cinzel : 'Cinzel_Decorative'
+}
+
+.cinzel {
+  font-family: var(--font-cinzel);
+  font-weight: bold;
+}
+
 @layer base {
   :root {
     /* Combined Base Colors */

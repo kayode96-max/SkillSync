@@ -16,6 +16,8 @@ import { CheckIcon } from "./checkicon/CheckIcon.jsx";
 import Image from "next/image";
 import Leetcode from "../../../public/leetcode.svg";
 import Add from "../../../public/add.svg";
+import leetstats from "../../../public/stats.png";
+import skillicon from "../../../public/skills.png";
 
 export default function Bio({ username }) {
   const [leetname, setLeetname] = useState("");
@@ -117,13 +119,17 @@ export default function Bio({ username }) {
   };
 
   return (
-    <div className="h-full w-full lg:w-[75%] lg:mx-auto border-b-2  ">
-      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#021526] ">
+    <div className="h-full w-full lg:w-[75%] lg:mx-auto border-b-2 border-slate-600  ">
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#1b1f23] ">
         <div className="">
-          <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
-            LeetCode Statistics
-          </h4>
-          <Card className="mt-4 p-4  space-y-3 bg-[#000] lg:max-w-[28rem]">
+          <div className="flex gap-2">
+            <Image src={leetstats} width={20} height={10} alt="stats" />
+            <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">
+              LeetCode Statistics
+            </h4>
+          </div>
+
+          <Card className="mt-4 p-4  space-y-3 bg-[#0C0C0C] lg:max-w-[28rem]">
             <CardHeader className="flex lg:gap-3 gap-4  items-center">
               <Image src={Leetcode} alt="Leetcode" width={30} height={30} />
               <div className="w-full flex justify-between gap-4">
@@ -136,9 +142,9 @@ export default function Bio({ username }) {
                     placeholder="user name"
                     radius="lg"
                     classNames={{
-                      input: " p-2 text-white bg-slate-800 outline-none rounded-lg",
+                      input:
+                        " p-2 text-white bg-slate-800 outline-none rounded-lg",
                       label: "text-white",
-                      
                     }}
                     value={leetname}
                     onChange={(e) => setLeetname(e.target.value)}
@@ -160,7 +166,8 @@ export default function Bio({ username }) {
                     variant="dot"
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#20b9b8]",
-                      content: "lg:w-[15rem] w-[10rem] font-medium text-default-600",
+                      content:
+                        "lg:w-[15rem] w-[10rem] font-medium text-default-600",
                       base: "bg-[#20b9b8]/20 border-none",
                     }}
                   >
@@ -177,7 +184,8 @@ export default function Bio({ username }) {
                     variant="dot"
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#feb200]",
-                      content: "lg:w-[15rem] w-[11rem] font-medium text-default-600",
+                      content:
+                        "lg:w-[15rem] w-[11rem] font-medium text-default-600",
                       base: "bg-[#feb200]/20 border-none",
                     }}
                   >
@@ -194,7 +202,8 @@ export default function Bio({ username }) {
                     variant="dot"
                     classNames={{
                       dot: "w-2 h-2 pl-2 bg-[#f43632]",
-                      content: "lg:w-[15rem] w-[10rem] font-medium text-default-600",
+                      content:
+                        "lg:w-[15rem] w-[10rem] font-medium text-default-600",
                       base: "bg-[#f43632]/20 border-none",
                     }}
                   >
@@ -230,7 +239,10 @@ export default function Bio({ username }) {
                   variant="faded"
                   color="success"
                   className="mt-2"
-                  classNames={{ base: "bg-success/10 border-none", content: "text-white text-xs " }}
+                  classNames={{
+                    base: "bg-success/10 border-none",
+                    content: "text-white text-xs ",
+                  }}
                 >
                   Acceptance Rate
                 </Chip>
@@ -253,7 +265,8 @@ export default function Bio({ username }) {
                     indicator: "bg-success h-[0.3rem]",
                     base: "max-w-md h-[2.5rem]",
                     track: "drop-shadow-md bg-white/20 ",
-                    label: "tracking-wider font-medium text-default-600 text-white",
+                    label:
+                      "tracking-wider font-medium text-default-600 text-white",
                     value: "text-foreground/60 text-white",
                   }}
                 />
@@ -261,9 +274,13 @@ export default function Bio({ username }) {
             </CardFooter>
           </Card>
           <div>
-            <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start pt-2 mt-2 dark:text-white text-gray-900 font-bold">
-              Top 8 Skills
-            </h4>
+            <div className="flex gap-2">
+              <Image src={leetstats} width={20} height={10} alt="skills" />
+              <h4 className="lg:text-xl sm:text-lg text-base text-center lg:text-start pt-2 mt-2 dark:text-white text-gray-900 font-bold">
+                Top Skills
+              </h4>
+            </div>
+
             <div className="flex flex-wrap lg:gap-2 mt-2">
               {skills.map((skill) => (
                 <Chip
@@ -336,6 +353,7 @@ export default function Bio({ username }) {
         </div>
 
         <div className="mt-6 lg:mt-0 flex items-center lg:items-start lg:w-[40%] ">
+       
           <RadarChartComponent />
         </div>
       </div>

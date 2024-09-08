@@ -12,7 +12,7 @@ import Stackoverflow from "../../../public/stack.svg";
 import Leetcode from "../../../public/leetcode.svg";
 import net from "../../../public/internet.png";
 import Add from "../../../public/add.png";
-import Tick from "../../../public/tick.png";
+import Tick from "../../../public/bluetick1.svg";
 
 export const SocialLinksContext = createContext({
   socialLinks: {},
@@ -80,7 +80,7 @@ export default function Header({ userData }) {
 
   return (
     <div className=" w-full lg:w-[75%] lg:mx-auto ">
-      <div className="h-full border-b-2  mt-4 dark:bg-[#021526] flex flex-col items-center justify-center p-8">
+      <div className="h-full border-b-2 border-slate-600 dark:bg-[#1b1f23] flex flex-col items-center justify-center p-8">
       <div className="w-full lg:h-[300px] sm:h-[200px] h-[120px] shrink relative rounded-md">
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
@@ -113,15 +113,15 @@ export default function Header({ userData }) {
 
         <div className="flex items-center space-x-2 mt-2">
           <p className="dark:text-white lg:text-2xl sm:text-lg text-base">{name}</p>
-          <Image src={Tick} alt="blue tick" width={18} height={18} />
+          <Image src={Tick} alt="blue tick" width={20} height={20} />
         </div>
         <p className="text-gray-700 dark:text-white lg:text-xl text-center sm:text-lg text-xs">{bio}</p>
         <p className="lg:text-sm text-xs font-bold text-gray-500 dark:text-white">{location}</p>
       </div>
 
       <SocialLinksContext.Provider value={{ socialLinks, setSocialLinks }} >
-        <div className="w-full flex items-center justify-center mt-2">
-          <div className="flex justify-center lg:space-x-4 sm:space-x-3 space-x-2 items-center mt-2">
+        
+          <div className="w-full flex mt-4 justify-center lg:space-x-4 sm:space-x-3 space-x-2 items-center">
             <Link href={userData.html_url}>
               <Image src={GitHub} alt="GitHub" width={20} height={20} />
             </Link>
@@ -153,13 +153,13 @@ export default function Header({ userData }) {
 
             <Link href={socialLinks.website || "#"}>
               <Image src={net} alt="Website" width={20} height={20} />
-            </Link>
-          </div>
-          <Button auto onClick={() => setModalOpen(true)} color="gradient">
-            Add
+            </Link> 
+            <Link auto className="cursor-pointer" onClick={() => setModalOpen(true)} color="gradient">
+           
             <Image src={Add} alt="add" width={20} height={20} />
-          </Button>
-        </div>
+          </Link>
+          </div>
+       
       </SocialLinksContext.Provider>
 
       <SocialModal isOpen={isModalOpen}  onOpenChange={setModalOpen} username={username}/>

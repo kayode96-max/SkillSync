@@ -23,6 +23,9 @@ export default withUt({
       },
     },
     extend: {
+      fontFamily : {
+        cinzel : [`var(--font-cinzel)`]
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

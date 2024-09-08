@@ -44,7 +44,7 @@ const chartConfig = {
 
 export function RadarChartComponent() {
   return (
-    <Card className="p-4 dark:bg-slate-800 bg-gray-800 border-slate-600 w-full ">
+    <Card className="p-4 dark:bg-[#101214] bg-gray-800 border-slate-600 w-full ">
       <CardHeader className="items-center pb-2">
         <CardTitle className="text-white">Profile Skills Assessment</CardTitle>
         <CardDescription className="text-white">
@@ -54,7 +54,7 @@ export function RadarChartComponent() {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="w-full lg:aspect-square max-h-[220px] "
+          className="w-full lg:aspect-square max-h-[280px] "
         >
           <RadarChart
             data={chartData}
