@@ -2,8 +2,14 @@
 import React from 'react';
 import { UploadButton } from '../../utils/uploadthing';
 
-const ImgUpload = ({ setImageUrl, username }) => {
-  const handleUploadComplete = async (res) => {
+
+interface ImgUploadProps  {
+  setImageUrl: (url: string) => void;
+  username: string;
+}
+
+const ImgUpload: React.FC<ImgUploadProps> = ({ setImageUrl, username }) => {
+  const handleUploadComplete = async (res: { url?: string }[]) => {
     if (res[0]?.url) {
       // Update the image URL in the state
       setImageUrl(res[0].url);

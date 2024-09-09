@@ -1,16 +1,10 @@
 import { Providers } from "./provider";
-import { Inter, Cinzel_Decorative } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Nav from "./Components/Navbar/Nav";
 const inter = Inter({ subsets: ["latin"] });
-export const cinzel = Cinzel_Decorative({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
-  weight: "700",
-  display: "swap",
-  style:"normal"
-});
+
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";

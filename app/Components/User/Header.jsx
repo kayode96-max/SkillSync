@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, createContext } from "react";
-import Imgupload from "../ImgUpload/page.jsx";
+import Imgupload from "../ImgUpload/img";
 import SocialModal from "./SocialModal";
 import { Link, Button } from "@nextui-org/react";
 import Image from "next/image";
@@ -13,7 +13,6 @@ import Leetcode from "../../../public/leetcode.svg";
 import net from "../../../public/internet.png";
 import Add from "../../../public/add.png";
 import Tick from "../../../public/bluetick1.svg";
-
 
 export const SocialLinksContext = createContext({
   socialLinks: {},
