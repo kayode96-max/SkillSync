@@ -22,8 +22,6 @@ import dynamic from "next/dynamic";
 import { signOut, useSession } from "next-auth/react";
 import Logout from "../../Login/Logout.jsx";
 import Image from "next/image";
-import Logo from "../../../public/3.svg";
-import Logo1 from "../../../public/1.svg";
 import Logo2 from "../../../public/2.svg";
 
 const Darkmode = dynamic(() => import("../Darkmode/page.jsx"), { ssr: false });
