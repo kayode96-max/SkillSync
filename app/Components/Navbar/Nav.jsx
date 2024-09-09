@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -22,16 +22,17 @@ import dynamic from "next/dynamic";
 import { signOut, useSession } from "next-auth/react";
 import Logout from "../../Login/Logout.jsx";
 import Image from "next/image";
-import Logo from "../../../public/profilelogo.svg"
+import Logo from "../../../public/3.svg";
+import Logo1 from "../../../public/1.svg";
+import Logo2 from "../../../public/2.svg";
 
 const Darkmode = dynamic(() => import("../Darkmode/page.jsx"), { ssr: false });
 // import { AcmeLogo } from "./Logo.jsx";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { data: session, status } = useSession(); 
+  const { data: session, status } = useSession();
   const loading = status === "loading";
-
 
   const username = session?.user?.username;
   const menuItems = [
@@ -52,8 +53,8 @@ export default function Nav() {
       onMenuOpenChange={setIsMenuOpen}
       className="flex justify-between bg-[#1E201E]/50 dark:bg-[#1b1f23] h-14 "
       classNames={{
-        wrapper:"max-w-full",
-        base:"data-justify"
+        wrapper: "max-w-full",
+        base: "data-justify",
       }}
     >
       <NavbarContent>
@@ -63,8 +64,11 @@ export default function Nav() {
         />
         <NavbarBrand className="ml-6 flex gap-2">
           {/* <AcmeLogo /> */}
-          <Image src={Logo} width={45} height={45} alt="logo"/>
-          <p className="cinzel">SKILL SYNC</p>
+          <Link href="/">
+            <Image src={Logo2} width={85} height={85} alt="logo" />
+          </Link>
+
+          {/* <p className="cinzel">SKILL SYNC</p> */}
         </NavbarBrand>
       </NavbarContent>
 
@@ -93,7 +97,7 @@ export default function Nav() {
       </NavbarContent> */}
 
       <NavbarContent className="mr-6 flex gap-4" justify="end">
-      <NavbarItem className="hidden lg:flex md:flex sm:flex">
+        <NavbarItem className="hidden lg:flex md:flex sm:flex">
           <Darkmode />
         </NavbarItem>
         {!session ? (
@@ -110,7 +114,7 @@ export default function Nav() {
                 color="primary"
                 name={username || "User"}
                 size="sm"
-                src={session.user.image || "/default-avatar.png"} 
+                src={session.user.image || "/default-avatar.png"}
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -124,32 +128,20 @@ export default function Nav() {
               <DropdownItem key="system">System</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
               <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem> */}
-              <DropdownItem
-                key="logout"
-                color="danger"
-              
-              >
-              <Logout/>
+              <DropdownItem key="logout" color="danger">
+                <Logout />
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         )}
       </NavbarContent>
 
-
       <NavbarMenu>
-        
-          <NavbarMenuItem >
-            <Link
-              color={"primary"}
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              <Darkmode/>
-            </Link>
-          </NavbarMenuItem>
-       
+        <NavbarMenuItem>
+          <Link color={"primary"} className="w-full" href="#" size="lg">
+            <Darkmode />
+          </Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

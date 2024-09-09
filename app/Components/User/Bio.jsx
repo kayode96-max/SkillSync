@@ -119,8 +119,8 @@ export default function Bio({ username }) {
   };
 
   return (
-    <div className="h-full w-full lg:w-[75%] lg:mx-auto border-b-2 border-slate-600  ">
-      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#1b1f23] bg-[#ffffff]">
+    <div className="h-full w-full lg:w-[75%] lg:mx-auto">
+      <div className="flex flex-col mb-2 rounded-lg lg:flex-row items-center justify-center lg:justify-between lg:space-x-10 shadow-xl p-8  dark:bg-[#1b1f23] bg-[#ffffff]">
         <div className="">
           <div className="flex gap-2">
             <Image src={leetstats} width={30} height={20} alt="stats" />

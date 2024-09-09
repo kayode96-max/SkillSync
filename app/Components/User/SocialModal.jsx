@@ -69,7 +69,7 @@ export default function SocialModal({ isOpen, onOpenChange, username, initialSoc
       placement="center"
       classNames={{
         contentWrapper: "rounded-lg",
-        base: "dark:bg-[#021526] p-4",
+        base: "dark:bg-[#0C0C0C] p-4",
         body: "flex flex-col gap-4",
       }}
     >

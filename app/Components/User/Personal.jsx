@@ -8,7 +8,7 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import Cardimage from "../../../public/card.jpeg";
+import Cardimage from "../../../public/card1.webp";
 import pic from "../../../public/project.png";
 import Image from "next/image";
 
@@ -34,7 +34,7 @@ export default async function Personal({ userData }) {
   return (
     <div className="flex justify-center  ">
       <div className="flex flex-col 2xl:w-3/4 w-full lg:w-[75%] lg:mx-auto ">
-        <div className="flex-1 dark:bg-[#1b1f23] bg-[#ffffff] shadow-xl p-8">
+        <div className="flex-1 dark:bg-[#1b1f23] bg-[#ffffff] shadow-xl p-8 mb-2 rounded-lg">
           <div className="flex gap-2">
             <Image src={pic} width={20} height={10} alt="project-png"/>
             <h4 className="lg:text-xl text-base text-center lg:text-start dark:text-white text-gray-900 font-bold">

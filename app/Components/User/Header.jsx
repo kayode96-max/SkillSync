@@ -79,7 +79,7 @@ export default function Header({ userData }) {
 
   return (
     <div className=" w-full lg:w-[75%] lg:mx-auto ">
-      <div className="h-full border-b-2 border-slate-600 dark:bg-[#1b1f23] bg-[#ffffff] flex flex-col items-center justify-center p-8">
+      <div className="h-full mb-2 rounded-lg dark:bg-[#1b1f23] bg-[#ffffff] flex flex-col items-center justify-center p-8">
         <div className="w-full lg:h-[300px] sm:h-[200px] h-[120px] shrink relative rounded-md">
           {isLoading ? (
             <div className="flex items-center justify-center h-full">
