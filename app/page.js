@@ -4,12 +4,11 @@ import Header from "./Components/User/Header.jsx";
 import Bio from "./Components/User/Bio.jsx";
 import Personal from "./Components/User/Personal.jsx";
 import { redirect } from "next/navigation.js";
-
+import { headers } from 'next/headers';
 
 export default async function Page() {
   const session = await auth();
   const username = session?.user?.username;
-
 
   let userData = null;
   if (username) {
@@ -23,8 +22,16 @@ export default async function Page() {
       console.error(`Failed to fetch user data: ${response.status} ${response.statusText}`);
     }
 
-    // Ensure user exists in our database
-    await fetch('/api/EnsureUser', {
+    // Use the headers() function to get the host
+    const headersList = headers();
+    const host = headersList.get('host');
+
+    // Construct the full URL
+    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
+    const apiUrl = `${protocol}://${host}/api/EnsureUser`;
+
+    // Make the API call
+    await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username }),
