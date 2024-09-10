@@ -33,7 +33,7 @@ export default function Header({ userData }) {
     setError(null);
     try {
       // Fetch profile data including bannerImage
-      const response = await fetch(`/api/GetProfile`);
+      const response = await fetch(`/api/GetProfile?username=${username}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch user Image: ${response.status}`);
       }
@@ -52,7 +52,7 @@ export default function Header({ userData }) {
     setError(null);
     try {
       // Fetch social links
-      const response = await fetch(`/api/GetSocial`);
+      const response = await fetch(`/api/GetSocial?username=${username}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch social links: ${response.status}`);
       }
@@ -72,9 +72,9 @@ export default function Header({ userData }) {
   }, []);
 
   const avatarUrl = userData?.avatar_url || "https://via.placeholder.com/150";
-  const name = userData?.name || "username";
-  const bio = userData?.bio || "not fetched";
-  const location = userData?.location || "not fetched";
+  const name = userData?.name || "Name Not available";
+  const bio = userData?.bio || "Bio Not available";
+  const location = userData?.location || "Location Not available";
 
   return (
     <div className=" w-full lg:w-[75%] lg:mx-auto ">
