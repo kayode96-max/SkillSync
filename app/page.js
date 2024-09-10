@@ -13,14 +13,22 @@ export default async function Page() {
 
   let userData = null;
   if (username) {
-    const response = await fetch(`https://api.github.com/users/${username}`,{ cache: 'force-cache' });
+    const response = await fetch(`https://api.github.com/users/${username}`, {
+      cache: 'no-store', // Force fresh fetch
+    });
     if (response.ok) {
       userData = await response.json();
  
-    }else {
-      // Log the error if the response is not OK
+    } else {
       console.error(`Failed to fetch user data: ${response.status} ${response.statusText}`);
     }
+
+    // Ensure user exists in our database
+    await fetch('/api/EnsureUser', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username }),
+    });
   }
 
   if (!session?.user) {

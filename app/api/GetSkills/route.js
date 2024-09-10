@@ -3,20 +3,25 @@ import dbConnect from '../../lib/db';
 import User from '../../models/User';
 
 export async function GET(request) {
+	const { searchParams } = new URL(request.url);
+	const username = searchParams.get('username');
 
+	if (!username) {
+		return NextResponse.json({ message: 'Username is required' }, { status: 400 });
+	}
 
-  try {
-    await dbConnect();
+	try {
+		await dbConnect();
 
-    const user = await User.findOne().select('skills');
+		const user = await User.findOne({ username }).select('skills');
 
-    if (!user) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
-    }
+		if (!user) {
+			return NextResponse.json({ message: 'User not found' }, { status: 404 });
+		}
 
-    return NextResponse.json({ data: user.skills });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: 'Error fetching user profile' }, { status: 500 });
-  }
+		return NextResponse.json({ data: user.skills });
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ message: 'Error fetching user skills' }, { status: 500 });
+	}
 }

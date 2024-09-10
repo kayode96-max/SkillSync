@@ -55,10 +55,10 @@ export default function Bio({ username }) {
   useEffect(() => {
     async function fetchUserSkills() {
       try {
-        const userResponse = await fetch(`/api/GetSkills`);
+        const userResponse = await fetch(`/api/GetSkills?username=${username}`);
         if (userResponse.ok) {
           const userData = await userResponse.json();
-          console.log("Fetched user skills:", userData.data); // Debug statement
+          console.log("Fetched user skills:", userData.data);
           setSkills(userData.data || []);
         } else {
           console.error(
@@ -70,8 +70,10 @@ export default function Bio({ username }) {
       }
     }
 
-    fetchUserSkills();
-  }, []);
+    if (username) {
+      fetchUserSkills();
+    }
+  }, [username]);
 
   const updateSkills = async (updatedSkills) => {
     try {

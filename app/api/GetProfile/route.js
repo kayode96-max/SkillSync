@@ -3,9 +3,12 @@ import dbConnect from "../../lib/db";
 import User from "../../models/User";
 
 export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const username = searchParams.get('username');
+
   try {
     await dbConnect();
-    const user = await User.findOne().select("bannerImage");
+    const user = await User.findOne({ username }).select("bannerImage");
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
