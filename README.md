@@ -1,3 +1,6 @@
+<a href="https://www.producthunt.com/posts/skillsync?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-skillsync" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=499069&theme=light" alt="SkillSync - A&#0032;dev&#0032;profile&#0032;generator&#0032;act&#0032;as&#0032;your&#0032;modern&#0032;resume | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
