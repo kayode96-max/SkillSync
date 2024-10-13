@@ -1,37 +1,130 @@
+<p align="center">
+  <img src="https://img.icons8.com/?size=512&id=55494&format=png" width="20%" alt="SKILLSYNC-logo">
+</p>
+<p align="center">
+    <h1 align="center">SKILLSYNC</h1>
+</p>
+<p align="center">
+    <em><code>❯ A dev profile generator with Next.Js </code></em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/github/license/Ahsankhalid618/SkillSync?style=flat&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/last-commit/Ahsankhalid618/SkillSync?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/Ahsankhalid618/SkillSync?style=flat&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/Ahsankhalid618/SkillSync?style=flat&color=0080ff" alt="repo-language-count">
+</p>
+<p align="center">
+		<em>Built with the tools and technologies:</em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat-square" alt="Next.js Badge">
+	<img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat-square" alt="React Badge">
+	<img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat-square" alt="JavaScript Badge">
+	<img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat-square" alt="TypeScript Badge">
+	<img src="https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=fff&style=flat-square" alt="MongoDB Badge">
+	<img src="https://img.shields.io/badge/shadcn%2Fui-000?logo=shadcnui&logoColor=fff&style=flat-square" alt="shadcn/ui Badge">
+	<br>
+	<img src="https://img.shields.io/badge/NextUI-000?logo=nextui&logoColor=fff&style=flat-square" alt="NextUI Badge">
+		<img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat-square" alt="Tailwind CSS Badge">
+	<img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat&logo=ESLint&logoColor=white" alt="ESLint">
+	<img src="https://img.shields.io/badge/LeetCode-FFA116?logo=leetcode&logoColor=fff&style=flat-square" alt="LeetCode Badge">
+	<img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=flat-square" alt="GitHub Badge">
+</p>
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<br>
+
+###### Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more.Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more. Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more.Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more.
+
+## Features
+
+- **Profile Customization**: Easily customize your profile with your image, banner, headline, and contact details.
+- **Skills Visualization**: Summarize your skills with interactive charts for a quick overview of your expertise.
+- **GitHub Integration**: Automatically fetch your GitHub projects and display them beautifully.
+- **LeetCode Data**: Showcase your LeetCode achievements and stats.
+- **Social Links**: Add links to your social networks for better connectivity.
+
+## Tech Stack
+
+- **Frontend**: Next.Js 14, NextUI, ShadCN
+- **Backend**: Next.Js API routes, NextAuth, MongoDB
+- **APIs**: GitHub Public API, LeetCode API
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up Skillsync locally:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- MongoDB (local or cloud instance)
+- Git
+
+### Installation
+
+1. **Fork and Clone the repository:**
+```sh
+❯ git clone https://github.com/Ahsankhalid618/SkillSync
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Navigate to the project directory:**
+```sh
+❯ cd SkillSync
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. **Install the required dependencies:**
+```sh
+❯ npm install
+```
+4. **Set up environment variables:**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Create a .env.local file in the root directory and add your configuration:
+```sh
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+MONGODB_URI=your_mongodb_uri
+NEXTAUTH_URL=your_nextauth_secret
+AUTH_SECRET=your-auth-secret
+UPLOADTHING_SECRET=your-uploadthing-secret
+UPLOADTHING_APP_ID=your-ID
+```
+5. **Run the development server:**
+```sh
+npm run dev
+```
+Open your browser and navigate to http://localhost:3000.
 
-## Learn More
+## Usage
+- After starting the server, follow the prompts to connect your GitHub and LeetCode accounts.
+- Customize your profile as desired and share it with others!
 
-To learn more about Next.js, take a look at the following resources:
+##  Contributing
+**We welcome contributions from the community! To contribute to Skillsync, follow these steps:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Create a new branch:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```sh
+git checkout -b feature/your-feature-name
+```
 
-## Deploy on Vercel
+**Make your changes and commit:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+git add .
+git commit -m "Add your commit message here"
+```
+**Push to your fork:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+git push origin feature/your-feature-name
+```
+**Create a Pull Request:** Go to the original repository and click on "New Pull Request" to submit your changes for review.
+
+## License
+**This project is licensed under the MIT License.**
+
+## Acknowledgments
+Thanks to the contributors and the open-source community for their support.
+Special thanks to the creators of the libraries and tools used in this project.
+
+## Contact
+For questions or feedback, feel free to reach out via `ahsankhalid816@gmail.com` or open an issue on GitHub.
