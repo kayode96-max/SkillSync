@@ -37,7 +37,7 @@ export default function Nav() {
     "Profile",
     "Dashboard",
     "Activity",
-    "Analytics",
+    "Analytic",
     "System",
     "Deployments",
     "My Settings",
@@ -69,30 +69,6 @@ export default function Nav() {
           {/* <p className="cinzel">SKILL SYNC</p> */}
         </NavbarBrand>
       </NavbarContent>
-
-      {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="/">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link color="foreground" href="/Customer">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/Integrations">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent> */}
-
-      {/* <NavbarContent className="hidden sm:flex gap-6 " justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Darkmode />
-        </NavbarItem>
-      </NavbarContent> */}
 
       <NavbarContent className="mr-6 flex gap-4" justify="end">
         <NavbarItem className="hidden lg:flex md:flex sm:flex">
