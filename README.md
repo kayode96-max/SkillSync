@@ -50,6 +50,17 @@
 - **Backend**: Next.Js API routes, NextAuth, MongoDB
 - **APIs**: GitHub Public API, LeetCode API
 
+<h2 style="text-align: center;">Project Screenshots:</h2>
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px;">
+    <img src="https://raw.githubusercontent.com/Ahsankhalid618/SkillSync/refs/heads/main/public/profilenew1.png" alt="project-screenshot" style="width: 400px; height: 400px; object-fit: cover;" />
+    <img src="https://raw.githubusercontent.com/Ahsankhalid618/SkillSync/refs/heads/main/public/skillsync.jpg" alt="project-screenshot" style="width: 400px; height: 400px; object-fit: cover;" />
+    <img src="https://raw.githubusercontent.com/Ahsankhalid618/SkillSync/refs/heads/main/public/profilenew.png" alt="project-screenshot" style="width: 400px; height: 400px; object-fit: cover;" />
+    <img src="https://raw.githubusercontent.com/Ahsankhalid618/SkillSync/refs/heads/main/public/profilenew-mobile1.png" alt="project-screenshot" style="width: 400px; height: 400px; object-fit: cover;" />
+</div>
+
+
+
 ## Getting Started
 
 Follow these steps to set up Skillsync locally:
