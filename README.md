@@ -1,11 +1,8 @@
 <p align="center">
-  <img src="https://img.icons8.com/?size=512&id=55494&format=png" width="20%" alt="SKILLSYNC-logo">
-</p>
-<p align="center">
-    <h1 align="center">SKILLSYNC</h1>
-</p>
-<p align="center">
 	<a href="https://www.producthunt.com/posts/skillsync?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-skillsync" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=499069&theme=light" alt="SkillSync - A&#0032;dev&#0032;profile&#0032;generator&#0032;act&#0032;as&#0032;your&#0032;modern&#0032;resume | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a></p>
+
+<p align="center"><img src="https://socialify.git.ci/Ahsankhalid618/SkillSync/image?font=Source%20Code%20Pro&amp;forks=1&amp;issues=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Solid&amp;stargazers=1&amp;theme=Dark" "="" alt="project-image"></p>
+
 	
 
 <p align="center">
@@ -37,7 +34,7 @@
 
 <br>
 
-###### Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more.Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allow users to create a customizable developer profile that highlights their achievements, skills, and more. Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more.Skillsync is a powerful tool designed for developers to seamlessly showcase their skills and projects. By aggregating data from platforms like GitHub and LeetCode, Skillsync allows users to create a customizable developer profile that highlights their achievements, skills, and more.
+###### Skillsync is A project that helps developers create stunning profiles by seamlessly fetching data from GitHub and LeetCode. With customizable features like profile images, banners, skill visualizations, and social links, Skillsync empowers you to showcase your expertise effortlessly. Built with Next.js 14, MongoDB, and more, it’s designed for developers by developers. 
 
 ## Features
 
