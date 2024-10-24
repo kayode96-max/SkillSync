@@ -64,7 +64,7 @@ export default async function Personal({ userData }) {
                     </div>
                   </CardHeader>
                   <Divider />
-                  <CardBody className="pt-2 pb-2 flex justify-center items-center">
+                  <CardBody className="pt-2 pb-2 white-text flex justify-center items-center">
                     {repo.description ? (
                       <p>{repo.description}</p>
                     ) : (
